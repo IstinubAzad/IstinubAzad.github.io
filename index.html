@@ -47,7 +47,7 @@
 		  cursor: pointer;
 		}
 
-		input[type=text] {
+		.SearchInput {
 		  padding: 6px;
 		  margin-top: 6.5px;
 		  font-size: 14.5px;
@@ -110,14 +110,131 @@
     		transition: 0.3s;
     	}
 
+
+    	.formInput {
+  			width: 100%;
+  			padding: 12px 20px;
+ 			margin: 8px 0;
+			display: inline-block;
+  			border: 1px solid #ccc;
+  			box-sizing: border-box;
+		}
+
+		.submitBtn {
+			background-color: #1c1c1c;
+  			color: white;
+  			padding: 14px 20px;
+  			margin: 8px 0;
+ 			border: none;
+  			cursor: pointer;
+  			width: 100%;
+		}
+
+
+		.backbtn {
+			width: auto;
+			padding: 10px 18px;
+			background-color: light-grey;
+		}
+
+
+		.imgcontainer {
+		    text-align: center;
+		    margin: 24px 0 12px 0;
+		    position: relative;
+		}
+
+		img.avatar {
+			width: 20%;
+			height: 20%;
+		}
+
+		.container {
+  			padding: 16px;
+  			width: 100%;
+		}
+
+		span.psw {
+		    float: right;
+		    padding-top: 16px;
+		}
+
+
+		.modal {
+			display: none; /* Hidden by default */
+			position: fixed; /* Stay in place */
+			z-index: 1; /* Sit on top */
+			width: 100%; /* Full width */
+			height: 100%; /* Full height */
+			overflow: auto; /* Enable scroll if needed */
+			background-color: rgb(0,0,0); /* Fallback color */
+			background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+			padding-top: 60px;
+		}
+
+
+		/* Modal Content/Box */
+		.modal-content {
+  			background-image: url("Images\\Background.jpg");
+  			background-size: 50%;
+  			margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  			border: 1px solid #888;
+  			width: 50%; /* Could be more or less, depending on screen size */
+		}
+
+
+		.close {
+		    position: absolute;
+		    right: 25px;
+		    top: 0;
+		    color: #000;
+		    font-size: 35px;
+		    font-weight: bold;
+		}
+
+		.close:hover,
+		.close:focus {
+		    color: red;
+		    cursor: pointer;
+		}
+
+
+		/* Add Zoom Animation */
+		.animate {
+		  	-webkit-animation: animatezoom 0.6s;
+		  	animation: animatezoom 0.6s
+		}
+
+
+		@-webkit-keyframes animatezoom {
+		    from {-webkit-transform: scale(0)} 
+		    to {-webkit-transform: scale(1)}
+		}
+	  
+		@keyframes animatezoom {
+		  	from {transform: scale(0)} 
+		  	to {transform: scale(1)}
+		}
+
+	/* Change styles for span and cancel button on extra small screens */
+		@media screen and (max-width: 300px) {
+	  		span.psw {
+	  			font-color: white;
+			    display: block;
+			    float: none;
+	  	}
+	  		.backbtn {
+	     		width: 100%;
+	     	}
+	    }
+
+
     	button:hover {
     		background: #4cbc80;
     	}
 
     	.slides {
     		height: 90vh;
-
-
     	}
 
     	font {
@@ -183,12 +300,13 @@
 	<nav>
 		<ul>
 	  		<li><a class="active navBar" href="#home">Home</a></li>
+	  		<li><a class="navBar" href="#home">Profile</a></li>
 	 		<li><a class="navBar" href="#news">News Feeds</a></li>
 	  		<li><a class="navBar" href="#Specialist">Freelancers</a></li>
 	  		<li><a class="navBar" href="#contact">Contact Administrator</a></li>
 	  		<li class="search"><div class="search-container">
     				<form action="/action_page.php">
-      					<input type="text" placeholder="Search.." name="search">
+      					<input class="SearchInput" type="text" placeholder="Search.." name="search">
       					<button type="submit"><i class="fa fa-search"></i></button>
     				</form>
   				</div>
@@ -215,14 +333,120 @@
 		<div class="maintitle hidden-xs">
 	        <div class="col-md-12 text-center">
 	        	<p><b>Company Title</b></p>
-	    		<button class="login">Login</button>
-	    		<button class="register">Register</button>
+	    		<button class="login" onclick="document.getElementById('id01').style.display='block'">Login</button>
+	    		<button class="register" onclick="document.getElementById('id02').style.display='block'">Register</button>
 	        </div>
 	    </div>
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    	<script>
+    		// Get the modal
+			var modal = document.getElementById('id01');
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+			    if (event.target == modal) {
+			        modal.style.display = "none";
+			    }
+			}
+    	</script>
+    	<script>
+    		// Get the modal
+			var modal2 = document.getElementById('id02');
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+			    if (event.target == modal2) {
+			        modal2.style.display = "none";
+			    }
+			}
+    	</script>
 	</main>
+
+
+    <!-- Login form -->
+
+	<div id="id01" class="modal">
+		<form class="modal-content animate" action="/action_page.php" method="post">
+			<div class="imgcontainer">
+				<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+				<img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/72/Avatar_icon_green.svg/1024px-Avatar_icon_green.svg.png" alt="Avatar" class="avatar">
+			</div>
+
+			<div class="container">
+				<center><p>Account type</p>
+				<input type="radio" id="buyer" name="account_Type" value="buyer"> <label for="buyer">Buyer</label>
+				<input type="radio" id="freelancer" name="account_Type" value="freelancer"> <label for="buyer">Freelancer</label></center>
+
+				<label for="uname"><b>Username</b></label>
+				<input class="formInput" type="text" placeholder="Enter Username" name="uname" required>
+
+				<label for="psw"><b>Password</b></label>
+				<input class="formInput" type="password" placeholder="Enter Password" name="psw" required>
+					        
+				<button class="submitBtn" type="submit">Login</button>
+				<label>
+					<input type="checkbox" checked="checked" name="remember"> Remember me
+				</label>
+			</div>
+			<div class="container" style="background-color:#1c1c1c;">
+				<button type="button" onclick="document.getElementById('id01').style.display='none'" class="backbtn">Back</button>
+				<span class="psw" style="color: white;">Forgot <a href="#">password?</a></span>
+			</div>
+		</form>
+	</div>
+
+
+
+
+	<div id="id02" class="modal">
+		<form class="modal-content animate" action="/action_page.php" method="post">
+			<div class="imgcontainer">
+				<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+				<img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/72/Avatar_icon_green.svg/1024px-Avatar_icon_green.svg.png" alt="Avatar" class="avatar">
+			</div>
+
+			<div class="container">
+				<center><p>Account type</p>
+				<input type="radio" id="buyer" name="account_Type" value="buyer"> <label for="buyer">Buyer</label>
+				<input type="radio" id="freelancer" name="account_Type" value="freelancer"> <label for="buyer">Freelancer</label></center>
+
+				<label for="uname"><b>First name</b></label>
+				<input class="formInput" type="text" placeholder="Enter your First Name" name="fname" required>
+
+				<label for="uname"><b>Last Name</b></label>
+				<input class="formInput" type="text" placeholder="Enter Your Last name" name="luname" required>
+
+				<label for="uname"><b>Username</b></label>
+				<input class="formInput" type="text" placeholder="Enter Username" name="uname" required>
+
+				<label for="uname"><b>E-mail Address</b></label>
+				<input class="formInput" type="text" placeholder="Enter you email Address" name="uname" required>
+
+				<label for="uname"><b>Password</b></label>
+				<input class="formInput" type="password" placeholder="Enter Username" name="psw" required>
+
+				<label for="uname"><b>Re-Password</b></label>
+				<input class="formInput" type="password" placeholder="Enter Username" name="psw" required>
+
+				<button class="submitBtn" type="submit">Login</button>
+
+				<label>
+					<input type="checkbox" checked="checked" name="remember"> Remember me
+				</label> <br>
+
+				<label>Or, Register Using any of the following accounts:</label>
+
+			</div>
+			<div class="container" style="background-color:#1c1c1c;">
+				<button type="button" onclick="document.getElementById('id02').style.display='none'" class="backbtn">Back</button>
+				<span class="psw" style="color: white;">Forgot <a href="#">password?</a></span>
+			</div>
+		</form>
+	</div>	
+
+
 	<footer>
 		<p style="margin-top: 10px; font-size: 20px;">Visit our pages in the links:</p>
 		<ul class="ListOfLinks">
