@@ -1,460 +1,672 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<title>Istinub's Template</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    
-	<style>
-		*{
-		  margin: 0;
-		  padding: 0;
-		  font-family: Century Gothic;
-		}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images\favicon_io\favicon.ico" type="image/x-icon">
 
-		body {
-			background-image: url("Images\\Background.jpg");
-			background-size: 100%;
-		}
-
-		ul {
-		  list-style-type: none;
-		  margin: 0;
-		  padding: 0;
-		  overflow: hidden;
-		  background-color: #1c1c1c;
-		}
-
-		li {
-		  display: inline-block;
-		}
-
-		.search {
-		  float: right;
-		  padding: 5px 2px;
-		}
-
-		.search-container button {
-		  float: right;
-		  padding: 6px 10px;
-		  margin-top: 6.5px;
-		  margin-right: 16px;
-		  background: #4cbc80;
-		  font-size: 14px;
-		  border: none;
-		  cursor: pointer;
-		}
-
-		.SearchInput {
-		  padding: 6px;
-		  margin-top: 6.5px;
-		  font-size: 14.5px;
-		  border: none;
-		}
-
-		.search-container button:hover {
-		  background: green;
-		}
-
-		li a {
-		  display: block;
-		  color: white;
-		  text-align: center;
-		  padding: 12px 16px;
-		  text-decoration: none;
-		  transition: 0.3s;
-		}
-
-		.navBar:hover {
-		  background-color: #4cbc80;
-		  color: white;
-		  text-decoration: none;
-		}
-
-		.active {
-		  background-color: #4cbc80;
-		}
-
-		.maintitle {
-			position: fixed;
-    		top: 10%;
-    		font-size: 50px;
-    		width: 96.66666666666666%;
-    		color: Black;
-    		text-align: center;
-    	}
-
-    	.login {
-    		position: fixed;
-    		text-align: center;
-    		top: 70%;
-    		left: 41%;
-    		font-size: 25px;
-    		background: transparent;
-    		border: 1px solid black;
-    		padding: 5px 15px;
-    		transition: 0.3s;
-    	}
-
-    	.register {
-    		position: fixed;
-    		text-align: center;
-    		top: 70%;
-    		right: 41%;
-    		font-size: 25px;
-    		background: transparent;
-    		border: 1px solid black;
-    		padding: 5px 15px;
-    		transition: 0.3s;
-    	}
-
-
-    	.formInput {
-  			width: 100%;
-  			padding: 12px 20px;
- 			margin: 8px 0;
-			display: inline-block;
-  			border: 1px solid #ccc;
-  			box-sizing: border-box;
-		}
-
-		.submitBtn {
-			background-color: #1c1c1c;
-  			color: white;
-  			padding: 14px 20px;
-  			margin: 8px 0;
- 			border: none;
-  			cursor: pointer;
-  			width: 100%;
-		}
-
-
-		.backbtn {
-			width: auto;
-			padding: 10px 18px;
-			background-color: light-grey;
-		}
-
-
-		.imgcontainer {
-		    text-align: center;
-		    margin: 24px 0 12px 0;
-		    position: relative;
-		}
-
-		img.avatar {
-			width: 20%;
-			height: 20%;
-		}
-
-		.container {
-  			padding: 16px;
-  			width: 100%;
-		}
-
-		span.psw {
-		    float: right;
-		    padding-top: 16px;
-		}
-
-
-		.modal {
-			display: none; /* Hidden by default */
-			position: fixed; /* Stay in place */
-			z-index: 1; /* Sit on top */
-			width: 100%; /* Full width */
-			height: 100%; /* Full height */
-			overflow: auto; /* Enable scroll if needed */
-			background-color: rgb(0,0,0); /* Fallback color */
-			background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-			padding-top: 60px;
-		}
-
-
-		/* Modal Content/Box */
-		.modal-content {
-  			background-image: url("Images\\Background.jpg");
-  			background-size: 50%;
-  			margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  			border: 1px solid #888;
-  			width: 50%; /* Could be more or less, depending on screen size */
-		}
-
-
-		.close {
-		    position: absolute;
-		    right: 25px;
-		    top: 0;
-		    color: #000;
-		    font-size: 35px;
-		    font-weight: bold;
-		}
-
-		.close:hover,
-		.close:focus {
-		    color: red;
-		    cursor: pointer;
-		}
-
-
-		/* Add Zoom Animation */
-		.animate {
-		  	-webkit-animation: animatezoom 0.6s;
-		  	animation: animatezoom 0.6s
-		}
-
-
-		@-webkit-keyframes animatezoom {
-		    from {-webkit-transform: scale(0)} 
-		    to {-webkit-transform: scale(1)}
-		}
-	  
-		@keyframes animatezoom {
-		  	from {transform: scale(0)} 
-		  	to {transform: scale(1)}
-		}
-
-	/* Change styles for span and cancel button on extra small screens */
-		@media screen and (max-width: 300px) {
-	  		span.psw {
-	  			font-color: white;
-			    display: block;
-			    float: none;
-	  	}
-	  		.backbtn {
-	     		width: 100%;
-	     	}
-	    }
-
-
-    	button:hover {
-    		background: #4cbc80;
-    	}
-
-    	.slides {
-    		height: 90vh;
-    	}
-
-    	font {
-    		font-family: Broadway;
-    		position: absolute;
-    		bottom: 55%;
-    		left: 30%;
-    		color: #4cbc80;
-    		font-size: 50px;
-    	}
-
-    	.Speech {
-    		font-family: Cambria;
-    		position: absolute;
-    		bottom: 50%;
-    		left: 30%;
-    		color: white;
-    		font-size: 30px;
-    	}
-
-
-    	.slide-0 {
-    		background-image: url(Images\\IstinubAzad.jpg);
-    		background-size: 100%;
-    	}
-    	.slide-1 {
-			background-image:  url(Images\\amlan.jpg);
-			background-size: 100%;
-    	}
-    	.slide-2 {
-    		background-image: url(Images\\Aporna02.jpg);
-    		background-size: 100%;
-    	}
-    	.slide-3 {
-    		background-image: url(Images\\emon02.jpg);
-    		background-size: 100%;
-    	}
-
-
-
-		footer {
-			position: fixed;
-		  	bottom: 0;
-		  	width: 100%;
-		  	height: 15%;
-		  	background: #1c1c1c;
-		  	text-align: center;
-		  	color: white;
-		}
-
-		.links:hover {
-			background-color: #4cbc80;
-			border-radius: 100%;
-			background-size: 50% 50%;
-		}
-
-
-	</style>
-
+  <title>Istinub Azad | Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
-	<nav>
-		<ul>
-	  		<li><a class="active navBar" href="#home">Home</a></li>
-	  		<li><a class="navBar" href="#home">Profile</a></li>
-	 		<li><a class="navBar" href="#news">News Feeds</a></li>
-	  		<li><a class="navBar" href="#Specialist">Freelancers</a></li>
-	  		<li><a class="navBar" href="#contact">Contact Administrator</a></li>
-	  		<li class="search"><div class="search-container">
-    				<form action="/action_page.php">
-      					<input class="SearchInput" type="text" placeholder="Search.." name="search">
-      					<button type="submit"><i class="fa fa-search"></i></button>
-    				</form>
-  				</div>
-  			</li>
-		</ul>
-	</nav>
-	<main>
-		<div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
-		    <div class="carousel-inner">
-			    <div class="item active">
-			    	<div class="slides slide-0"><font>Istinub Azad</font><p class="Speech">Founder's Speech</p></div>
-			    </div>
-			    <div class="item">
-			    	<div class="slides slide-1"><font>Nibraj Shafwan Amlan</font><p class="Speech">Founder's Speech</p></div>
-			    </div>
-			    <div class="item">
-			    	<div class="slides slide-2"><font>Amena Akhter Aporna</font><p class="Speech">Founder's Speech</p></div>
-			    </div>
-			    <div class="item">
-			    	<div class="slides slide-3"><font>Md. Imdadul Haque Emon</font><p class="Speech">Founder's Speech</p></div>
-			    </div>
-		    </div>
-		</div>
-		<div class="maintitle hidden-xs">
-	        <div class="col-md-12 text-center">
-	        	<p><b>Company Title</b></p>
-	    		<button class="login" onclick="document.getElementById('id01').style.display='block'">Login</button>
-	    		<button class="register" onclick="document.getElementById('id02').style.display='block'">Register</button>
-	        </div>
-	    </div>
-	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    	<script>
-    		// Get the modal
-			var modal = document.getElementById('id01');
+  <div class="loader">
+    <div class="spinner"></div>
+  </div>
+  <main>
+    <!-- wrapper Sidebar Section -->
+    <ul class="wrapper">
+      <a href="#AboutMeProfile">
+        <li class="icon first">
+          <span class="tooltip">Profile</span>
+        </li>
+      </a>
+      <a href="#education">
+        <li class="icon second">
+          <span class="tooltip">Education</span>
+        </li>
+      </a>
+      <a href="#Skills">
+        <li class="icon third">
+          <span class="tooltip">Skills</span>
+        </li>
+      </a>
+      <a href="#experience">
+        <li class="icon forth">
+          <span class="tooltip">Experience</span>
+        </li>
+      </a>
+      <a href="#projects">
+        <li class="icon fifth">
+          <span class="tooltip">Projects</span>
+        </li>
+      </a>
+      <a href="#publications">
+        <li class="icon sixth">
+          <span class="tooltip">Publications</span>
+        </li>
+      </a>
+      <a href="#certifications">
+        <li class="icon seventh">
+          <span class="tooltip">Certifications</span>
+        </li>
+      </a>
+      <a href="#contact">
+        <li class="icon eighth">
+          <span class="tooltip">Contacts</span>
+        </li>
+      </a>
+    </ul>
 
-			// When the user clicks anywhere outside of the modal, close it
-			window.onclick = function(event) {
-			    if (event.target == modal) {
-			        modal.style.display = "none";
-			    }
-			}
-    	</script>
-    	<script>
-    		// Get the modal
-			var modal2 = document.getElementById('id02');
+    <!-- Profile Section with Picture, Name, and About Me -->
+    <section id="#AboutMe" class="profile-section mt-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <!-- Picture Column -->
+          <div class="col-md-4 text-center">
+            <img src="images/istinub.png" width="400" alt="Photo of Istinub Azad" class="img-fluid">
+            <hr style="margin: 0 0; border: 1px solid #fac446; opacity: 60%;">
+          </div>
+          <!-- Name and About Me Column -->
+          <div class="col-md-8">
+            <h1 class="display-5 fw-bold">Istinub Azad</h1>
+            <p class="fs-5">Information & Technology Enthusiast</p>
+            <p>
+              <span style="color: #ffd471;">Hello there! Welcome to my profile.</span> I am a passionate IT student
+              specializing in Cybersecurity and Artificial Intelligence.
+              I have hands-on experience in ERP-based web development and software programming. My background in
+              competitive programming has enhanced my ability to solve problems and adapt quickly.
+              I am deeply motivated by the potential of AI to transform cybersecurity solutions, and I strive to
+              contribute to innovative, tech-driven projects.
+            </p>
+            <a href="Istiub_Azad___CV.pdf" class="btn btn-primary" download>View Resume</a>
+            <a href="#projects" class="btn btn-outline-primary">Explore Projects</a>
 
-			// When the user clicks anywhere outside of the modal, close it
-			window.onclick = function(event) {
-			    if (event.target == modal2) {
-			        modal2.style.display = "none";
-			    }
-			}
-    	</script>
-	</main>
+            <!-- Floating Section -->
+            <div class="floating-section">
+              <h2>Innovating Solutions</h2>
+              <p>Leveraging AI and Cybersecurity to solve complex problems.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- Education Section -->
+    <section id="education" class="education-section mt-5">
+      <div class="container">
+        <h2 class="display-5 fw-bold text-center mb-5">EDUCATION</h2>
 
-    <!-- Login form -->
+        <!-- Master of Information Technology and Systems -->
+        <div class="row mb-4 justify-content-center">
+          <div class="education-card p-4 rounded d-flex align-items-center">
+            <div class="col-md-4 text-center">
+              <a href="https://www.utas.edu.au" target="_blank" style="text-decoration: none; color: #fac446;"><img
+                  src="https://cdn.my-mooc.com/media/cache/conceptor_160x160/conceptor/logo/ef8c2241f0fcfe46deb89caf6ba54d88acc2861a.jpg"
+                  alt="University of Tasmania Logo" class="education-logo">
+                <p>Click to visit</p>
+              </a>
 
-	<div id="id01" class="modal">
-		<form class="modal-content animate" action="/action_page.php" method="post">
-			<div class="imgcontainer">
-				<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-				<img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/72/Avatar_icon_green.svg/1024px-Avatar_icon_green.svg.png" alt="Avatar" class="avatar">
-			</div>
+            </div>
 
-			<div class="container">
-				<center><p>Account type</p>
-				<input type="radio" id="buyer" name="account_Type" value="buyer"> <label for="buyer">Buyer</label>
-				<input type="radio" id="freelancer" name="account_Type" value="freelancer"> <label for="buyer">Freelancer</label></center>
+            <div class="col-md-10">
+              <h5><strong>Master of Information Technology and Systems</strong> <br>2023 - Present</h5>
+              <h5><span style="color: #fac446;">University of Tasmania</span> | Hobart, Tasmania, Australia</h5>
+              <ul>
+                <li>IT Administration & Professional Practices: ICT Company and project management.</li>
+                <li>Web Development: HTML, CSS, JS, bootsrap, PHP, Laravel - Project included</li>
+                <li>Software Engineering: C#, .NET, WFP - Project inlcuded </li>
+                <li>Cybersecurity: Policies, System Administration, ethical hacking, eForensics</li>
+                <li>Artificial Intelligence: Rapid Miner, Big data analytics, NLP</li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
-				<label for="uname"><b>Username</b></label>
-				<input class="formInput" type="text" placeholder="Enter Username" name="uname" required>
+        <!-- Bachelor of Science in Computer Science and Engineering -->
+        <div class="row mb-4 justify-content-center">
+          <div class="education-card p-4 rounded d-flex align-items-center">
+            <div class="col-md-4 text-center">
+              <a href="https://www.bracu.ac.bd" target="_blank" style="text-decoration: none; color: #fac446;"><img
+                  src="https://www.bracu.ac.bd/sites/all/themes/sloth/images/f-logo.svg" alt="BRAC University Logo"
+                  class="education-logo">
+                <p>Click to visit</p>
+              </a>
+            </div>
 
-				<label for="psw"><b>Password</b></label>
-				<input class="formInput" type="password" placeholder="Enter Password" name="psw" required>
-					        
-				<button class="submitBtn" type="submit">Login</button>
-				<label>
-					<input type="checkbox" checked="checked" name="remember"> Remember me
-				</label>
-			</div>
-			<div class="container" style="background-color:#1c1c1c;">
-				<button type="button" onclick="document.getElementById('id01').style.display='none'" class="backbtn">Back</button>
-				<span class="psw" style="color: white;">Forgot <a href="#">password?</a></span>
-			</div>
-		</form>
-	</div>
-
-
-
-
-	<div id="id02" class="modal">
-		<form class="modal-content animate" action="/action_page.php" method="post">
-			<div class="imgcontainer">
-				<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-				<img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/72/Avatar_icon_green.svg/1024px-Avatar_icon_green.svg.png" alt="Avatar" class="avatar">
-			</div>
-
-			<div class="container">
-				<center><p>Account type</p>
-				<input type="radio" id="buyer" name="account_Type" value="buyer"> <label for="buyer">Buyer</label>
-				<input type="radio" id="freelancer" name="account_Type" value="freelancer"> <label for="buyer">Freelancer</label></center>
-
-				<label for="uname"><b>First name</b></label>
-				<input class="formInput" type="text" placeholder="Enter your First Name" name="fname" required>
-
-				<label for="uname"><b>Last Name</b></label>
-				<input class="formInput" type="text" placeholder="Enter Your Last name" name="luname" required>
-
-				<label for="uname"><b>Username</b></label>
-				<input class="formInput" type="text" placeholder="Enter Username" name="uname" required>
-
-				<label for="uname"><b>E-mail Address</b></label>
-				<input class="formInput" type="text" placeholder="Enter you email Address" name="uname" required>
-
-				<label for="uname"><b>Password</b></label>
-				<input class="formInput" type="password" placeholder="Enter Username" name="psw" required>
-
-				<label for="uname"><b>Re-Password</b></label>
-				<input class="formInput" type="password" placeholder="Enter Username" name="psw" required>
-
-				<button class="submitBtn" type="submit">Login</button>
-
-				<label>
-					<input type="checkbox" checked="checked" name="remember"> Remember me
-				</label> <br>
-
-				<label>Or, Register Using any of the following accounts:</label>
-
-			</div>
-			<div class="container" style="background-color:#1c1c1c;">
-				<button type="button" onclick="document.getElementById('id02').style.display='none'" class="backbtn">Back</button>
-				<span class="psw" style="color: white;">Forgot <a href="#">password?</a></span>
-			</div>
-		</form>
-	</div>	
+            <div class="col-md-8">
+              <h5><strong>Bachelor of Science in Computer Science and Engineering</strong> <br>2018 - 2022</h5>
+              <h5><span style="color: #fac446;">BRAC University</span> | Dhaka, Bangladesh | </h5>
+              <ul>
+                <li>Programming: Basics (Java, python), OOP, data structures, algorithms.</li>
+                <li>Database Management: SQL, MySQL, MongoDB., theoretical diagrams</li>
+                <li>Networking: Data communication and computer networks.</li>
+                <li>Software Engineering: Data communication and computer networks.</li>
+                <li>Artificial Intelligence: AI basics, ML, DL, NLP.</li>
+                <li>Hardware: DLD, Microprocessors, circuits and digital electronics, hardware interface, robotics, VLSI
+                  Design.</li>
+                <li>Others: OS, Automata, compiler design, graphics.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
 
-	<footer>
-		<p style="margin-top: 10px; font-size: 20px;">Visit our pages in the links:</p>
-		<ul class="ListOfLinks">
-			<li><a class="links" href="http://www.facebook.com"><img src="Images\Icons\facebook.png" width="30px" height="30px"></a></li>
-			<li><a class="links" href="http://www.instagram.com"><img src="Images\Icons\instagram.png" width="30px" height="30px"></a></li>
-			<li><a class="links" href="http://www.linkedin.com"><img src="Images\Icons\linkedin.png" width="30px" height="30px"></a></li>
-			<li><a class="links" href="http://www.gmail.com"><img src="Images\Icons\google.png" width="30px" height="30px"></a></li>
-		</ul>
-	</footer>
+        <!-- Higher Secondary Certificate -->
+        <div class="row mb-4 justify-content-center">
+          <div class="education-card p-4 rounded d-flex align-items-center">
+            <div class="col-md-4 text-center">
+              <a href="https://sjs.edu.bd/new/index.php" target="_blank"
+                style="text-decoration: none; color: #fac446;"><img src="https://sjs.edu.bd/new/assets/img/logor.png"
+                  alt="Saint Joseph Logo" class="education-logo">
+                <p>Click to visit</p>
+              </a>
+            </div>
+
+            <div class="col-md-8">
+              <h5><strong>Higher Secondary Certificate (H.S.C) in Science</strong> <br>2015 - 2017</h5>
+              <h5><span style="color: #fac446;">Saint Joseph Higher Secondary School</span> | Dhaka, Bangladesh |
+              </h5>
+              <p><strong>Result:</strong> GPA - 5 <br>Science Background</p>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Secondary School Certificate -->
+        <div class="row mb-4 justify-content-center">
+          <div class="education-card p-4 rounded d-flex align-items-center">
+            <div class="col-md-4 text-center">
+              <a href="https://baghc.edu.bd" target="_blank" style="text-decoration: none; color: #fac446;"><img
+                  src="https://baghc.edu.bd/wp-content/uploads/2023/08/banoful-logo-100.png"
+                  alt="Banophool Adibashi Green Heart College Logo" class="education-logo">
+                <p>Click to visit</p>
+              </a>
+            </div>
+
+            <div class="col-md-8">
+              <h5><strong>Secondary School Certificate (S.S.C)</strong> <br>2013 - 2015</h5>
+              <h5><span style="color: #fac446;">Banophool Adibashi Green Heart College</span> | Dhaka, Bangladesh
+              </h5>
+              <p><strong>Result:</strong> GPA - 5 <br>Science Background</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="Skills" class="skills-section mt-5">
+      <div class="container">
+        <h2 class="display-5 fw-bold text-center mb-5">SKILLS</h2>
+
+        <div class="row justify-content-center">
+          <!-- Programming Languages -->
+          <div class="col-md-6">
+            <h4 class="font-weight-bold">Programming Languages</h4>
+            <div class="skill-item">
+              <p>Python <span class="skill-level" data-target="85">0%</span></p>
+              <div class="progress">
+                <div class="progress-bar bg-success" data-target="85" style="width: 0%;"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <p>C# <span class="skill-level" data-target="75">0%</span></p>
+              <div class="progress">
+                <div class="progress-bar bg-info" data-target="75" style="width: 0%;"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <p>Java <span class="skill-level" data-target="70">0%</span></p>
+              <div class="progress">
+                <div class="progress-bar bg-primary" data-target="70" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Frameworks & Markup Languages -->
+          <div class="col-md-6">
+            <h4 class="font-weight-bold">Frameworks & Markup Languages</h4>
+            <div class="skill-item">
+              <p>HTML & CSS <span class="skill-level" data-target="90">0%</span></p>
+              <div class="progress">
+                <div class="progress-bar bg-danger" data-target="90" style="width: 0%;"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <p>Bootstrap <span class="skill-level" data-target="85">0%</span></p>
+              <div class="progress">
+                <div class="progress-bar bg-warning" data-target="85" style="width: 0%;"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <p>PHP & Laravel <span class="skill-level" data-target="70">0%</span></p>
+              <div class="progress">
+                <div class="progress-bar bg-secondary" data-target="70" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Categories -->
+        <div class="row justify-content-center mt-4">
+          <div class="col-md-6">
+            <h4 class="font-weight-bold">Database Management</h4>
+            <p>SQL/MySQL, MariaDB</p>
+          </div>
+          <div class="col-md-6">
+            <h4 class="font-weight-bold">Forensic & Command line Tools</h4>
+            <p>FTK Imager, UNIX Shell Commands</p>
+          </div>
+          <div class="col-md-6 mt-3">
+            <h4 class="font-weight-bold">Operating Systems</h4>
+            <p>Windows, Linux (Kali, Ubuntu), macOS</p>
+          </div>
+          <div class="col-md-6 mt-3">
+            <h4 class="font-weight-bold">Office, graphics & Analysis apps</h4>
+            <p>Microsoft Office 365, Google Workspace, Adobe Creative Cloud, Rapid Miner, JASP</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Professional Experience Section -->
+    <section id="experience" class="experience-section mt-5">
+      <div class="container">
+        <h2 class="display-5 fw-bold text-center mb-5">PROFESSIONAL EXPERIENCE</h2>
+
+
+        <!-- Software Engineer Intern -->
+        <div class="row mb-4 justify-content-center">
+          <div class="experience-card p-4 rounded d-flex align-items-center">
+            <div class="col-md-4 text-center">
+              <a href="https://www.hexflow.com.au/" style="text-decoration: none; color: #fac446;"><img
+                  src="https://www.hexflow.com.au/wp-content/uploads/2022/03/1.png" alt="Hexflow Logo"
+                  class="experience-logo">
+                <p>Click to visit</p>
+              </a>
+            </div>
+            <div class="col-md-10">
+              <h5><strong>Software Engineer Intern (Full Time)</strong> <br>Mar 2022 - Jun 2023</h5>
+              <h5><span style="color: #fac446;">Hexflow</span> | Dhaka, Bangladesh</h5>
+              <ul>
+                <li>Worked on ERP-based web development as a Frappe Developer.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Graphics Team Lead -->
+        <div class="row mb-4 justify-content-center">
+          <div class="experience-card p-4 rounded d-flex align-items-center">
+            <div class="col-md-4 text-center">
+              <a href="https://www.facebook.com/shethinkscode" style="text-decoration: none; color: #fac446;"><img
+                  src="https://scontent.fmel14-2.fna.fbcdn.net/v/t39.30808-6/327170596_920497398961489_4368732653270139070_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=V4H423VHJvoQ7kNvgGwv-yH&_nc_oc=Adj4Xsu4klR-fvd8wg--fI68xpIodMSE8lWN84eLpcrwIwuUngDfnzoq6eiX4238dq8&_nc_zt=23&_nc_ht=scontent.fmel14-2.fna&_nc_gid=AO9S1NoWvQxPyeY8gfsLhJw&oh=00_AYCSGaSc5eh0rJr2zQDIEkyHETM6CkUFpqYjX-YN1Mte9w&oe=67B0FD4D"
+                  alt="She Thinks Code Logo" class="experience-logo">
+                <p>Click to visit</p>
+              </a>
+            </div>
+            <div class="col-md-10">
+              <h5><strong>Graphics Team Lead (Contractual)</strong> <br>Jun 2019 - Nov 2022</h5>
+              <h5><span style="color: #fac446;">She Thinks Code</span> | Dhaka, Bangladesh</h5>
+              <ul>
+                <li>Lead a team of expert digital graphics designers.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Operations Intern -->
+        <div class="row mb-4 justify-content-center">
+          <div class="experience-card p-4 rounded d-flex align-items-center">
+            <div class="col-md-4 text-center">
+              <a href="https://www.insidemaps.com/" style="text-decoration: none; color: #fac446;"><img
+                  src="https://djv3x21787vm7.cloudfront.net/1/logo-black.png" alt="InsideMaps Logo"
+                  class="experience-logo">
+                <p>Click to visit</p>
+              </a>
+            </div>
+            <div class="col-md-10">
+              <h5><strong>Operations Intern (Full Time)</strong> <br>Jul 2021 - Nov 2021</h5>
+              <h5><span style="color: #fac446;">InsideMaps Inc</span> | Dhaka, Bangladesh</h5>
+              <ul>
+                <li>Mapped real-estate properties using graphical tools.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section mt-5">
+      <div class="container">
+        <h2 class="display-5 fw-bold text-center mb-5">PROJECTS</h2>
+
+        <div class="row">
+          <!-- Car Rental System -->
+          <div class="col-md-4 mb-4">
+            <div class="project-card p-4 rounded">
+              <div class="project-image" style="background-image: url('path/to/car-rental-cover.jpg');">
+                <div class="overlay"></div>
+              </div>
+              <h5><strong>Car Rental System</strong> <span style="color: #fac446;">(2019)</span></h5>
+              <p>An online system for hiring cars with a secure server.</p>
+              <p><strong>Tools:</strong> HTML, CSS, Bootstrap, JavaScript, PHP, SQL</p>
+              <a href="https://github.com/your-username/car-rental-system" target="_blank" class="btn btn-primary">
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
+            </div>
+          </div>
+
+          <!-- Corresponding Point Connector -->
+          <div class="col-md-4 mb-4">
+            <div class="project-card p-4 rounded">
+              <div class="project-image" style="background-image: url('path/to/corresponding-point-cover.jpg');">
+                <div class="overlay"></div>
+              </div>
+              <h5><strong>Corresponding Point Connector</strong> <span style="color: #fac446;">(2020)</span></h5>
+              <p>A playable system with simple graphical geometry.</p>
+              <p><strong>Tools:</strong> Assembly Language</p>
+              <a href="https://github.com/Istinub/Corresponding-Point-Connector" target="_blank"
+                class="btn btn-primary">
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
+            </div>
+          </div>
+
+          <!-- Apartment Management System -->
+          <div class="col-md-4 mb-4">
+            <div class="project-card p-4 rounded">
+              <div class="project-image" style="background-image: url('path/to/apartment-management-cover.jpg');">
+                <div class="overlay"></div>
+              </div>
+              <h5><strong>Apartment Management System</strong> <span style="color: #fac446;">(2020)</span></h5>
+              <p>An application to maintain and manage apartment databases.</p>
+              <p><strong>Tools:</strong> Python Tkinter, Microsoft Excel</p>
+              <a href="hhttps://github.com/Istinub/Apartment-Management-System" target="_blank" class="btn btn-primary">
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
+            </div>
+          </div>
+
+          <!-- Mental Health Care System -->
+          <div class="col-md-4 mb-4">
+            <div class="project-card p-4 rounded">
+              <div class="project-image" style="background-image: url('path/to/mental-health-care-cover.jpg');">
+                <div class="overlay"></div>
+              </div>
+              <h5><strong>Mental Health Care System</strong> <span style="color: #fac446;">(2021)</span></h5>
+              <p>An online platform for communicating with psychology specialists.</p>
+              <p><strong>Tools:</strong> HTML, CSS, Bootstrap, JavaScript, PHP, SQL</p>
+              <a href="https://github.com/your-username/mental-health-care-system" target="_blank"
+                class="btn btn-primary">
+                <i class="fab fa-github"></i> View on GitHub
+              </a>
+            </div>
+          </div>
+
+          <!-- Can Satellite Project -->
+          <div class="col-md-4 mb-4">
+            <div class="project-card p-4 rounded">
+              <div class="project-image" style="background-image: url('path/to/can-satellite-cover.jpg');">
+                <div class="overlay"></div>
+              </div>
+              <h5><strong>Can Satellite Project</strong> <span style="color: #fac446;">(2021)</span></h5>
+              <p>3D modeling and circuit analysis of a can-sized device performing satellite-like missions.</p>
+              <p><strong>Tools:</strong> Fusion 360, GUI using Java, PCB, and digital components</p>
+              <a href="https://youtu.be/LrZ2Z_oEano" target="_blank" class="btn btn-primary">
+                <i class="fab fa-youtube"></i> Watch on Youtube
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="publications-section mt-5">
+      <div class="container">
+        <h2 class="display-5 fw-bold text-center mb-5">PUBLICATIONS</h2>
+
+        <!-- Publication 1: Classifying Offensive Speech -->
+        <div class="row mb-4 justify-content-center">
+          <div class="publication-card p-4 rounded">
+            <h5><strong>"Classifying Offensive Speech of Bangla Text and Analysis Using Explainable AI"</strong></h5>
+            <p><strong>Published in:</strong> International Conference on Advances in Computing and Data Sciences
+              (ICACDS), April 2022</p>
+            <p><strong>Co-authors:</strong> A. A. Aporna, N. S. Amlan, HM Mehedi, Md. J. A. Mahbub, A. A. Rasel</p>
+            <a href="https://link.springer.com/chapter/10.1007/978-3-031-12638-3_12" target="_blank"
+              class="btn btn-primary">
+              <i class="fas fa-book"></i> View Publication
+            </a>
+          </div>
+        </div>
+
+        <!-- Publication 2: Intracranial Brain Hemorrhage Diagnosis -->
+        <div class="row mb-4 justify-content-center">
+          <div class="publication-card p-4 rounded">
+            <h5><strong>"Intracranial Brain Hemorrhage Diagnosis and Classification: A Hybrid Approach"</strong></h5>
+            <p><strong>Published in:</strong> International Conference on Information and Computer Technologies (ICICT),
+              March 2023</p>
+            <p><strong>Co-authors:</strong> I. H. Emon, K. N. Iqbal, A. A. Aporna, N. S. Amlan, M. S. Islam, R. Rahman
+            </p>
+            <a href="https://ieeexplore.ieee.org/document/10229558" target="_blank" class="btn btn-primary">
+              <i class="fas fa-book"></i> View Publication
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="certifications-section mt-5">
+      <div class="container">
+        <h2 class="display-5 fw-bold text-center mb-5">CERTIFICATIONS</h2>
+
+        <div class="certifications-grid">
+          <!-- Certification 1: CISCO Networking -->
+          <div class="certification-card">
+            <h5><strong>CISCO Networking and System Administration</strong></h5>
+            <p>Square Securities Management Ltd. (SSML) | <strong>Duration:</strong> Feb - May 2023</p>
+            <a href="https://link-to-certificate1.com" target="_blank" class="btn btn-primary">
+              <i class="fas fa-certificate"></i> View Certificate
+            </a>
+          </div>
+
+          <!-- Certification 2: Complete Flutter Development -->
+          <div class="certification-card">
+            <h5><strong>The Complete Flutter Development Bootcamp with Dart</strong></h5>
+            <p>Udemy | <strong>Date:</strong> May 9, 2023</p>
+            <a href="https://www.udemy.com/certificate/UC-d69f19ed-811a-4f2b-a6e9-30c89d6999db/" target="_blank"
+              class="btn btn-primary">
+              <i class="fas fa-certificate"></i> View Certificate
+            </a>
+          </div>
+
+          <!-- Certification 3: Python and Django Full Stack -->
+          <div class="certification-card">
+            <h5><strong>Python and Django Full Stack Web Developer Bootcamp</strong></h5>
+            <p>Udemy | <strong>Date:</strong> March 28, 2023</p>
+            <a href="https://www.udemy.com/certificate/UC-ff6208f3-8121-4c41-9cbb-f567a859f53b/" target="_blank"
+              class="btn btn-primary">
+              <i class="fas fa-certificate"></i> View Certificate
+            </a>
+          </div>
+
+          <!-- Certification 4: Software Design as an Abstraction -->
+          <div class="certification-card">
+            <h5><strong>Software Design as an Abstraction</strong></h5>
+            <p>Coursera | <strong>Date:</strong> Oct 1, 2020</p>
+            <a href="https://www.coursera.org/account/accomplishments/certificate/B2L6JU5Z6XQG" target="_blank"
+              class="btn btn-primary">
+              <i class="fas fa-certificate"></i> View Certificate
+            </a>
+          </div>
+
+          <!-- Certification 5: Image Processing with Python -->
+          <div class="certification-card">
+            <h5><strong>Image Processing with Python</strong></h5>
+            <p>Coursera | <strong>Date:</strong> Sep 30, 2020</p>
+            <a href="https://www.coursera.org/account/accomplishments/certificate/BBYTXFD4ELF3" target="_blank"
+              class="btn btn-primary">
+              <i class="fas fa-certificate"></i> View Certificate
+            </a>
+          </div>
+
+          <!-- Certification 6: Using Python to Access Web Data -->
+          <div class="certification-card">
+            <h5><strong>Using Python to Access Web Data</strong></h5>
+            <p>Coursera | <strong>Date:</strong> Sep 6, 2020</p>
+            <a href="https://www.coursera.org/account/accomplishments/certificate/HCXCGBWE9FLJ" target="_blank"
+              class="btn btn-primary">
+              <i class="fas fa-certificate"></i> View Certificate
+            </a>
+          </div>
+
+          <!-- Certification 7: Python Data Structures -->
+          <div class="certification-card">
+            <h5><strong>Python Data Structures</strong></h5>
+            <p>Coursera | <strong>Date:</strong> Jul 28, 2020</p>
+            <a href="https://www.coursera.org/account/accomplishments/certificate/MTG8RRBRX784" target="_blank"
+              class="btn btn-primary">
+              <i class="fas fa-certificate"></i> View Certificate
+            </a>
+          </div>
+
+          <!-- Certification 8: Programming for Everybody -->
+          <div class="certification-card">
+            <h5><strong>Programming for Everybody (Getting Started with Python)</strong></h5>
+            <p>Coursera | <strong>Date:</strong> Jul 27, 2020</p>
+            <a href="https://www.coursera.org/account/accomplishments/certificate/UC9JJJ8VPXU7" target="_blank"
+              class="btn btn-primary">
+              <i class="fas fa-certificate"></i> View Certificate
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section py-5">
+      <div class="container">
+        <h2 class="display-5 fw-bold text-center mb-5">CONTACT INFORMATION</h2>
+
+        <div class="row justify-content-center">
+          <!-- Contact Card -->
+          <div class="col-md-8">
+            <div class="card contact-card p-4 shadow rounded-3" style="background-color: #222831; color: #EEEEEE;">
+              <h5 class="card-title text-center mb-3 fw-bold" style="color: #FFD700;">Get in Touch</h5>
+              <ul class="list-unstyled">
+                <table style="width: 100%; color: #EEEEEE; margin-top: 5px;">
+                  <tr>
+                    <td style="width: 30px;"><i class="fas fa-envelope" style="color: #0e76a8;"></i></td>
+                    <td><strong>Email:</strong></td>
+                    <td><a href="mailto:istinubazad@gmail.com" class="text-decoration-underline"
+                        style="color: #FFD700;">istinubazad@gmail.com</a></td>
+                  </tr>
+                  <tr>
+                    <td><i class="fab fa-whatsapp" style="color: #25d366;"></i></td>
+                    <td><strong>WhatsApp:</strong></td>
+                    <td>
+                      <a href="https://wa.me/+61455339903" target="_blank" class="text-decoration-underline"
+                        style="color: #FFD700;">+61 455 339 903</a>,
+                      <a href="https://wa.me/+8801711315431" target="_blank" class="text-decoration-underline"
+                        style="color: #FFD700;">+880 1711 315 431</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><i class="fas fa-map-marker-alt" style="color: #ea4335;"></i></td>
+                    <td><strong>Address:</strong></td>
+                    <td>
+                      6 Cherrington Drive, Tranmere, TAS 7018<br>
+                      Hasna Hena Apartment, 26/8-A, Pallabi, Mirpur, Dhaka-1216
+                    </td>
+                  </tr>
+                </table>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <!-- Social Icons -->
+    <div class="social-icons" style="margin-bottom: 15px;">
+      <a href="https://www.linkedin.com/in/istinub-azad-a19996173" target="_blank" class="me-3">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="https://github.com/Istinub" target="_blank" class="me-3">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://www.facebook.com/istinub.azad" target="_blank" class="me-3">
+        <i class="fab fa-facebook"></i>
+      </a>
+      <a href="https://www.instagram.com/istinub_azad" target="_blank" class="me-3">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.youtube.com/@istinubazad3627" target="_blank" class="me-3">
+        <i class="fab fa-youtube"></i>
+      </a>
+      <a href="mailto:istinubazad@gmail.com" class="me-3">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+    <p style="text-align: center;">&copy; 2025 Istinub Azad. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // JavaScript to remove loader when page is fully loaded
+    window.addEventListener('load', function () {
+      document.body.classList.add('loaded');
+    });
+    // Progress bar animation
+    window.addEventListener('scroll', function () {
+      const skillsSection = document.querySelector('.skills-section');
+      const sectionPos = skillsSection.getBoundingClientRect().top;
+      const screenPos = window.innerHeight;
+
+      if (sectionPos < screenPos) {
+        const skillLevels = document.querySelectorAll('.skill-level');
+        const progressBars = document.querySelectorAll('.progress-bar');
+
+        skillLevels.forEach((level, index) => {
+          let targetValue = parseInt(level.getAttribute('data-target'));
+          let progressBar = progressBars[index];
+
+          // Counter animation
+          let counter = 0;
+          const speed = 10;
+
+          const countInterval = setInterval(() => {
+            if (counter <= targetValue) {
+              level.textContent = `${counter++}%`;
+            } else {
+              clearInterval(countInterval);
+            }
+          }, speed);
+
+          // Progress bar animation
+          progressBar.style.transition = "width 2s ease-in-out";
+          progressBar.style.width = `${targetValue}%`;
+        });
+      }
+    });
+  </script>
+
 </body>
+
 </html>
