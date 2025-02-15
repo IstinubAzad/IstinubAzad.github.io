@@ -25,6 +25,127 @@ html {
   animation: spin 2s linear infinite;
 }
 
+/* Mobile Navigation */
+.mobile-nav {
+  display: none;
+}
+
+.menu-icon {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  color: #F1A800;
+}
+
+.mobile-menu {
+  display: none;
+  list-style: none;
+  padding: 0;
+  background-color: #1C3D5A;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-menu li {
+  padding: 10px;
+  text-align: center;
+}
+
+.mobile-menu li a {
+  color: #E5E5E5;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.mobile-menu.active {
+  display: block;
+}
+
+/* Hide desktop sidebar on mobile */
+@media (max-width: 768px) {
+  
+  .wrapper {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: block;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .profile-section img {
+    width: 60%;
+    margin-bottom: 20px;
+  }
+
+  .profile-section h1 {
+    font-size: 2rem;
+  }
+
+  .profile-section p {
+    font-size: 1rem;
+  }
+
+  .fs-5, h1 {
+    text-align: center;
+  }
+
+  ul {
+    text-align: left;
+  }
+
+  .education-card, .experience-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .education-card .col-md-4, .experience-card .col-md-4 {
+    margin-bottom: 20px;
+  }
+  
+
+
+  .skills-section .col-md-6 {
+    width: 90%;
+  }
+
+  .skill-item {
+    margin-bottom: 20px;
+  }
+
+  .projects-section .col-md-4 {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+
+  .contact-card table tr {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+
+  .contact-card table td {
+    width: 90%;
+  }
+
+  .social-icons {
+    width: 90%;
+    text-align: center;
+  }
+
+  .social-icons a {
+    margin: 0 10px;
+  }
+
+  footer p {
+    text-align: center;
+  }
+}
+
 /* Animation for spinner */
 @keyframes spin {
   0% { transform: rotate(0deg); }
