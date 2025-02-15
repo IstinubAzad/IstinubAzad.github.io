@@ -5,12 +5,135 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="images\favicon_io\favicon.ico" type="image/x-icon">
+  <meta name="author" content="Istinub Azad">
+  <meta name="description"
+    content="Istinub Azad is a Computer Science graduate from BRAC University, now pursuing a Master's in Information Technology and Systems (MITS) at the University of Tasmania (UTAS). He specializes in AI, machine learning, and CYber Security. Visit his portfolio to explore his work.">
+  <meta name="keywords" content="Istinub Azad, Computer Science, MITS, UTAS, AI, Machine Learning, Cyber">
+
+  <meta name="author" content="Istinub Azad">
+  <meta name="description"
+    content="Explore the portfolio of Istinub Azad, a Computer Science graduate and Master of IT student at UTAS specializing in Cyber Security and AI">
+  <meta name="keywords" content="Istinub Azad, Computer Science, MITS, UTAS, AI, Machine Learning, Cyber Security">
+
+  <meta property="og:title" content="Istinub Azad | AI, Machine Learning, Digital Art Portfolio">
+  <meta property="og:description"
+    content="Explore the portfolio of Istinub Azad, a Computer Science graduate and Master of IT student at UTAS specializing in Cyber Security and AI">
+  <meta property="og:image" content="https://istinubazad.github.io/images/istinub.png">
+  <meta property="og:url" content="https://istinubazad.github.io">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Istinub Azad Portfolio">
+  <meta property="og:locale" content="en_US">
+
 
   <title>Istinub Azad | Profile</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
+
+  <style>
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+
+      body {
+        overflow-x: hidden;
+        /* Prevent horizontal scrolling */
+        max-width: 100%;
+        /* Ensure body doesn't exceed viewport width */
+      }
+
+      .container {
+        padding-left: 15px;
+        padding-right: 15px;
+        max-width: 768px;
+        /* Ensure container doesn't exceed viewport width */
+      }
+
+      .wrapper {
+        display: none;
+        /* Hide sidebar on mobile */
+      }
+
+      .profile-section .row {
+        flex-direction: column;
+      }
+
+      .profile-section img {
+        width: 60%;
+        /* Adjust image size for mobile */
+        margin-bottom: 20px;
+      }
+
+      .profile-section h1 {
+        font-size: 2rem;
+        /* Adjust heading size */
+      }
+
+      .profile-section p {
+        font-size: 1rem;
+        /* Adjust paragraph size */
+      }
+
+
+      .floating-section {
+        width: 100%;
+        float: left;
+      }
+
+      section {
+        width: 100%;
+      }
+
+      .education-card,
+      .experience-card {
+        flex-direction: column;
+        text-align: center;
+
+      }
+
+      .education-card .col-md-4,
+      .experience-card .col-md-4 {
+        margin-bottom: 20px;
+      }
+
+      .skills-section .col-md-6 {
+        width: 100%;
+      }
+
+      .skill-item {
+        margin-bottom: 20px;
+      }
+
+      .projects-section .col-md-4 {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .contact-card table tr {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+      }
+
+      .contact-card table td {
+        width: 100%;
+      }
+
+      .social-icons {
+        width: 100%;
+        text-align: center;
+      }
+
+      .social-icons a {
+        margin: 0 10px;
+      }
+
+      footer p {
+        text-align: center;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -18,9 +141,26 @@
     <div class="spinner"></div>
   </div>
   <main>
-    <!-- wrapper Sidebar Section -->
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav">
+      <div class="menu-icon">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul class="mobile-menu">
+        <li><a href="#AboutMeProfile">Profile</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#Skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Desktop Sidebar -->
     <ul class="wrapper">
-      <a href="#AboutMe">
+      <a href="#AboutMeProfile">
         <li class="icon first">
           <span class="tooltip">Profile</span>
         </li>
@@ -63,12 +203,13 @@
     </ul>
 
     <!-- Profile Section with Picture, Name, and About Me -->
-    <section id="AboutMe" class="profile-section mt-5">
+    <section id="#AboutMe" class="profile-section mt-5">
       <div class="container">
         <div class="row align-items-center">
           <!-- Picture Column -->
           <div class="col-md-4 text-center">
-            <img src="images/istinub.png" width="400" alt="Photo of Istinub Azad" class="img-fluid">
+            <img src="images/istinub.png" width="400" alt="Istinub Azad - Computer Science Graduate and MITS Student at UTAS" class="img-fluid"
+              style="margin-bottom: 0;">
             <hr style="margin: 0 0; border: 1px solid #fac446; opacity: 60%;">
           </div>
           <!-- Name and About Me Column -->
@@ -389,7 +530,7 @@
               <h5><strong>Apartment Management System</strong> <span style="color: #fac446;">(2020)</span></h5>
               <p>An application to maintain and manage apartment databases.</p>
               <p><strong>Tools:</strong> Python Tkinter, Microsoft Excel</p>
-              <a href="hhttps://github.com/Istinub/Apartment-Management-System" target="_blank" class="btn btn-primary">
+              <a href="https://github.com/Istinub/Apartment-Management-System" target="_blank" class="btn btn-primary">
                 <i class="fab fa-github"></i> View on GitHub
               </a>
             </div>
@@ -566,27 +707,24 @@
               <ul class="list-unstyled">
                 <table style="width: 100%; color: #EEEEEE; margin-top: 5px;">
                   <tr>
-                    <td style="width: 30px;"><i class="fas fa-envelope" style="color: #0e76a8;"></i></td>
-                    <td><strong>Email:</strong></td>
-                    <td><a href="mailto:istinubazad@gmail.com" class="text-decoration-underline"
-                        style="color: #FFD700;">istinubazad@gmail.com</a></td>
+                    <td><i class="fas fa-envelope" style="color: #0e76a8; font-size: small;"> E m a i l :</i></td>
+                    <td><a href="mailto:istinubazad@gmail.com" class="text-decoration-none"
+                        style="color: #f9874a;">istinubazad@gmail.com</a></td>
                   </tr>
                   <tr>
-                    <td><i class="fab fa-whatsapp" style="color: #25d366;"></i></td>
-                    <td><strong>WhatsApp:</strong></td>
+                    <td><i class="fab fa-whatsapp" style="color: #25d366; font-size: small;"> W h a t s A p p :</i></td>
                     <td>
-                      <a href="https://wa.me/+61455339903" target="_blank" class="text-decoration-underline"
-                        style="color: #FFD700;">+61 455 339 903</a>,
-                      <a href="https://wa.me/+8801711315431" target="_blank" class="text-decoration-underline"
-                        style="color: #FFD700;">+880 1711 315 431</a>
+                      <a href="https://wa.me/+61455339903" target="_blank" class="text-decoration-none"
+                        style="color: #f9874a;">+61 455 339 903</a>,
+                      <a href="https://wa.me/+8801711315431" target="_blank" class="text-decoration-none"
+                        style="color: #f9874a;">+880 1711 315 431</a>
                     </td>
                   </tr>
                   <tr>
-                    <td><i class="fas fa-map-marker-alt" style="color: #ea4335;"></i></td>
-                    <td><strong>Address:</strong></td>
+                    <td><i class="fas fa-map-marker-alt" style="color: #ea4335; font-size: small;"> A d d r e s s :</i></td>
                     <td>
-                      6 Cherrington Drive, Tranmere, TAS 7018<br>
-                      Hasna Hena Apartment, 26/8-A, Pallabi, Mirpur, Dhaka-1216
+                      - 6 Cherrington Drive, Tranmere, TAS 7018<br>
+                      - Hasna Hena Apartment, 26/8-A, Pallabi, Mirpur, Dhaka-1216
                     </td>
                   </tr>
                 </table>
@@ -618,9 +756,6 @@
       </a>
       <a href="https://www.youtube.com/@istinubazad3627" target="_blank" class="me-3">
         <i class="fab fa-youtube"></i>
-      </a>
-      <a href="mailto:istinubazad@gmail.com" class="me-3">
-        <i class="fas fa-envelope"></i>
       </a>
     </div>
     <p style="text-align: center;">&copy; 2025 Istinub Azad. All rights reserved.</p>
@@ -665,6 +800,34 @@
         });
       }
     });
+
+    // Mobile Navigation Toggle
+    document.querySelector('.menu-icon').addEventListener('click', function () {
+      document.querySelector('.mobile-menu').classList.toggle('active');
+    });
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Istinub Azad",
+    "url": "https://istinubazad.github.io",
+    "image": "https://istinubazad.github.io/assets/profile.jpg",
+    "jobTitle": "Computer Science Graduate, MITS Student",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "University of Tasmania"
+    },
+    "alumniOf": {
+      "@type": "EducationalOccupationalCredential",
+      "name": "BRAC University"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/istinubazad",
+      "https://github.com/istinubazad",
+      "https://www.facebook.com/istinub.azad"
+    ]
+  }
   </script>
 
 </body>
