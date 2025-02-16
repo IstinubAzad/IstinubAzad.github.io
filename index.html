@@ -8,7 +8,7 @@
   <meta name="author" content="Istinub Azad">
   <meta name="description"
     content="Istinub Azad is a Computer Science graduate from BRAC University, now pursuing a Master's in Information Technology and Systems (MITS) at the University of Tasmania (UTAS). He specializes in AI, machine learning, and CYber Security. Visit his portfolio to explore his work.">
-  <meta name="keywords" content="Istinub Azad, Computer Science, MITS, UTAS, AI, Machine Learning, Cyber">
+  <meta name="keywords" content="Istinub, Istinub Azad, Computer Science, MITS, UTAS, AI, Machine Learning, Cyber">
 
   <meta name="author" content="Istinub Azad">
   <meta name="description"
@@ -35,25 +35,6 @@
     /* Mobile Responsive Styles */
     @media (max-width: 768px) {
 
-      body {
-        overflow-x: hidden;
-        /* Prevent horizontal scrolling */
-        max-width: 100%;
-        /* Ensure body doesn't exceed viewport width */
-      }
-
-      .container {
-        padding-left: 15px;
-        padding-right: 15px;
-        max-width: 768px;
-        /* Ensure container doesn't exceed viewport width */
-      }
-
-      .wrapper {
-        display: none;
-        /* Hide sidebar on mobile */
-      }
-
       .profile-section .row {
         flex-direction: column;
       }
@@ -62,11 +43,6 @@
         width: 60%;
         /* Adjust image size for mobile */
         margin-bottom: 20px;
-      }
-
-      .profile-section h1 {
-        font-size: 2rem;
-        /* Adjust heading size */
       }
 
       .profile-section p {
@@ -141,22 +117,45 @@
     <div class="spinner"></div>
   </div>
   <main>
-    <!-- Mobile Navigation -->
-    <nav class="mobile-nav">
-      <div class="menu-icon">
-        <i class="fas fa-bars"></i>
+    <!-- Top Navigation Bar for Desktop -->
+    <nav class="top-nav">
+      <div class="container">
+        <ul>
+          <li><a href="#AboutMeProfile">Profile</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#Skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#certifications">Certifications</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
       </div>
-      <ul class="mobile-menu">
-        <li><a href="#AboutMeProfile">Profile</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#Skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#publications">Publications</a></li>
-        <li><a href="#certifications">Certifications</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
     </nav>
+
+    <div class="fixed-top-layer">
+      <!-- Mobile Navigation -->
+      <nav class="mobile-nav">
+        <div class="menu-icon">
+          <i class="fas fa-bars"></i>
+        </div>
+        <ul class="mobile-menu">
+          <li><a href="#AboutMeProfile">Profile</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#Skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#certifications">Certifications</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <label class="theme-switch" id="theme-toggle-wrapper">
+        <input type="checkbox" id="theme-toggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+
 
     <!-- Desktop Sidebar -->
     <ul class="wrapper">
@@ -208,16 +207,17 @@
         <div class="row align-items-center">
           <!-- Picture Column -->
           <div class="col-md-4 text-center">
-            <img src="images/istinub.png" width="400" alt="Istinub Azad - Computer Science Graduate and MITS Student at UTAS" class="img-fluid"
+            <img src="images/istinub.png" width="400"
+              alt="Istinub Azad - Computer Science Graduate and MITS Student at UTAS" class="img-fluid"
               style="margin-bottom: 0;">
-            <hr style="margin: 0 0; border: 1px solid #fac446; opacity: 60%;">
+            <hr>
           </div>
           <!-- Name and About Me Column -->
           <div class="col-md-8">
             <h1 class="display-5 fw-bold">Istinub Azad</h1>
-            <p class="fs-5">Information & Technology Enthusiast</p>
+            <p class="fs-5"><strong>Information & Technology Enthusiast</strong></p>
             <p>
-              <span style="color: #ffd471;">Hello there! Welcome to my profile.</span> I am a passionate IT student
+              <span>Hello there! Welcome to my profile.</span> I am a passionate IT student
               specializing in Cybersecurity and Artificial Intelligence.
               I have hands-on experience in ERP-based web development and software programming. My background in
               competitive programming has enhanced my ability to solve problems and adapt quickly.
@@ -256,7 +256,7 @@
 
             <div class="col-md-10">
               <h5><strong>Master of Information Technology and Systems</strong> <br>2023 - Present</h5>
-              <h5><span style="color: #fac446;">University of Tasmania</span> | Hobart, Tasmania, Australia</h5>
+              <h5><span>University of Tasmania</span> | Hobart, Tasmania, Australia</h5>
               <ul>
                 <li>IT Administration & Professional Practices: ICT Company and project management.</li>
                 <li>Web Development: HTML, CSS, JS, bootsrap, PHP, Laravel - Project included</li>
@@ -281,7 +281,7 @@
 
             <div class="col-md-8">
               <h5><strong>Bachelor of Science in Computer Science and Engineering</strong> <br>2018 - 2022</h5>
-              <h5><span style="color: #fac446;">BRAC University</span> | Dhaka, Bangladesh | </h5>
+              <h5><span>BRAC University</span> | Dhaka, Bangladesh | </h5>
               <ul>
                 <li>Programming: Basics (Java, python), OOP, data structures, algorithms.</li>
                 <li>Database Management: SQL, MySQL, MongoDB., theoretical diagrams</li>
@@ -310,7 +310,7 @@
 
             <div class="col-md-8">
               <h5><strong>Higher Secondary Certificate (H.S.C) in Science</strong> <br>2015 - 2017</h5>
-              <h5><span style="color: #fac446;">Saint Joseph Higher Secondary School</span> | Dhaka, Bangladesh |
+              <h5><span>Saint Joseph Higher Secondary School</span> | Dhaka, Bangladesh |
               </h5>
               <p><strong>Result:</strong> GPA - 5 <br>Science Background</p>
             </div>
@@ -331,7 +331,7 @@
 
             <div class="col-md-8">
               <h5><strong>Secondary School Certificate (S.S.C)</strong> <br>2013 - 2015</h5>
-              <h5><span style="color: #fac446;">Banophool Adibashi Green Heart College</span> | Dhaka, Bangladesh
+              <h5><span>Banophool Adibashi Green Heart College</span> | Dhaka, Bangladesh
               </h5>
               <p><strong>Result:</strong> GPA - 5 <br>Science Background</p>
             </div>
@@ -433,7 +433,7 @@
             </div>
             <div class="col-md-10">
               <h5><strong>Software Engineer Intern (Full Time)</strong> <br>Mar 2022 - Jun 2023</h5>
-              <h5><span style="color: #fac446;">Hexflow</span> | Dhaka, Bangladesh</h5>
+              <h5><span>Hexflow</span> | Dhaka, Bangladesh</h5>
               <ul>
                 <li>Worked on ERP-based web development as a Frappe Developer.</li>
               </ul>
@@ -454,7 +454,7 @@
             </div>
             <div class="col-md-10">
               <h5><strong>Graphics Team Lead (Contractual)</strong> <br>Jun 2019 - Nov 2022</h5>
-              <h5><span style="color: #fac446;">She Thinks Code</span> | Dhaka, Bangladesh</h5>
+              <h5><span>She Thinks Code</span> | Dhaka, Bangladesh</h5>
               <ul>
                 <li>Lead a team of expert digital graphics designers.</li>
               </ul>
@@ -474,7 +474,7 @@
             </div>
             <div class="col-md-10">
               <h5><strong>Operations Intern (Full Time)</strong> <br>Jul 2021 - Nov 2021</h5>
-              <h5><span style="color: #fac446;">InsideMaps Inc</span> | Dhaka, Bangladesh</h5>
+              <h5><span>InsideMaps Inc</span> | Dhaka, Bangladesh</h5>
               <ul>
                 <li>Mapped real-estate properties using graphical tools.</li>
               </ul>
@@ -493,10 +493,11 @@
           <!-- Car Rental System -->
           <div class="col-md-4 mb-4">
             <div class="project-card p-4 rounded">
-              <div class="project-image" style="background-image: url('path/to/car-rental-cover.jpg');">
+              <div class="project-image"
+                style="background-image: url('https://i.pinimg.com/736x/a6/74/33/a67433b83a061c5afc1147e3e8a2d38e.jpg');">
                 <div class="overlay"></div>
               </div>
-              <h5><strong>Car Rental System</strong> <span style="color: #fac446;">(2019)</span></h5>
+              <h5><strong>Car Rental System</strong> <span>(2019)</span></h5>
               <p>An online system for hiring cars with a secure server.</p>
               <p><strong>Tools:</strong> HTML, CSS, Bootstrap, JavaScript, PHP, SQL</p>
               <a href="https://github.com/your-username/car-rental-system" target="_blank" class="btn btn-primary">
@@ -508,10 +509,11 @@
           <!-- Corresponding Point Connector -->
           <div class="col-md-4 mb-4">
             <div class="project-card p-4 rounded">
-              <div class="project-image" style="background-image: url('path/to/corresponding-point-cover.jpg');">
+              <div class="project-image"
+                style="background-image: url('https://i.pinimg.com/736x/47/14/7b/47147bc7c924b5cb535d1f6933bcf545.jpg');">
                 <div class="overlay"></div>
               </div>
-              <h5><strong>Corresponding Point Connector</strong> <span style="color: #fac446;">(2020)</span></h5>
+              <h5><strong>Corresponding Point Connector</strong> <span>(2020)</span></h5>
               <p>A playable system with simple graphical geometry.</p>
               <p><strong>Tools:</strong> Assembly Language</p>
               <a href="https://github.com/Istinub/Corresponding-Point-Connector" target="_blank"
@@ -524,10 +526,11 @@
           <!-- Apartment Management System -->
           <div class="col-md-4 mb-4">
             <div class="project-card p-4 rounded">
-              <div class="project-image" style="background-image: url('path/to/apartment-management-cover.jpg');">
+              <div class="project-image"
+                style="background-image: url('https://i.pinimg.com/736x/b0/59/3b/b0593bf705296db4153a219be0b3608e.jpg');">
                 <div class="overlay"></div>
               </div>
-              <h5><strong>Apartment Management System</strong> <span style="color: #fac446;">(2020)</span></h5>
+              <h5><strong>Apartment Management System</strong> <span>(2020)</span></h5>
               <p>An application to maintain and manage apartment databases.</p>
               <p><strong>Tools:</strong> Python Tkinter, Microsoft Excel</p>
               <a href="https://github.com/Istinub/Apartment-Management-System" target="_blank" class="btn btn-primary">
@@ -539,14 +542,14 @@
           <!-- Mental Health Care System -->
           <div class="col-md-4 mb-4">
             <div class="project-card p-4 rounded">
-              <div class="project-image" style="background-image: url('path/to/mental-health-care-cover.jpg');">
+              <div class="project-image"
+                style="background-image: url('https://i.pinimg.com/736x/d3/b3/a8/d3b3a8673a79ca608d9f50b5c7925e7e.jpg');">
                 <div class="overlay"></div>
               </div>
-              <h5><strong>Mental Health Care System</strong> <span style="color: #fac446;">(2021)</span></h5>
+              <h5><strong>Mental Health Care System</strong> <span>(2021)</span></h5>
               <p>An online platform for communicating with psychology specialists.</p>
               <p><strong>Tools:</strong> HTML, CSS, Bootstrap, JavaScript, PHP, SQL</p>
-              <a href="https://github.com/your-username/mental-health-care-system" target="_blank"
-                class="btn btn-primary">
+              <a href="https://github.com/Istinub/mental-health-care-system" target="_blank" class="btn btn-primary">
                 <i class="fab fa-github"></i> View on GitHub
               </a>
             </div>
@@ -555,10 +558,11 @@
           <!-- Can Satellite Project -->
           <div class="col-md-4 mb-4">
             <div class="project-card p-4 rounded">
-              <div class="project-image" style="background-image: url('path/to/can-satellite-cover.jpg');">
+              <div class="project-image"
+                style="background-image: url('https://i.pinimg.com/736x/7e/74/21/7e7421751ece6ba3823ca59145d4c58e.jpg');">
                 <div class="overlay"></div>
               </div>
-              <h5><strong>Can Satellite Project</strong> <span style="color: #fac446;">(2021)</span></h5>
+              <h5><strong>Can Satellite Project</strong> <span>(2021)</span></h5>
               <p>3D modeling and circuit analysis of a can-sized device performing satellite-like missions.</p>
               <p><strong>Tools:</strong> Fusion 360, GUI using Java, PCB, and digital components</p>
               <a href="https://youtu.be/LrZ2Z_oEano" target="_blank" class="btn btn-primary">
@@ -702,26 +706,27 @@
         <div class="row justify-content-center">
           <!-- Contact Card -->
           <div class="col-md-8">
-            <div class="card contact-card p-4 shadow rounded-3" style="background-color: #222831; color: #EEEEEE;">
-              <h5 class="card-title text-center mb-3 fw-bold" style="color: #FFD700;">Get in Touch</h5>
+            <div class="card contact-card p-4 shadow rounded-3">
+              <h5 class="card-title text-center mb-3 fw-bold">Get in Touch</h5>
               <ul class="list-unstyled">
-                <table style="width: 100%; color: #EEEEEE; margin-top: 5px;">
+                <table style="width: 100%; margin-top: 5px;">
                   <tr>
                     <td><i class="fas fa-envelope" style="color: #0e76a8; font-size: small;"> E m a i l :</i></td>
                     <td><a href="mailto:istinubazad@gmail.com" class="text-decoration-none"
-                        style="color: #f9874a;">istinubazad@gmail.com</a></td>
+                        style="color: #c67346;">istinubazad@gmail.com</a></td>
                   </tr>
                   <tr>
-                    <td><i class="fab fa-whatsapp" style="color: #25d366; font-size: small;"> W h a t s A p p :</i></td>
+                    <td><i class="fab fa-whatsapp" style="color: #3ec36f; font-size: small;"> W h a t s A p p :</i></td>
                     <td>
                       <a href="https://wa.me/+61455339903" target="_blank" class="text-decoration-none"
-                        style="color: #f9874a;">+61 455 339 903</a>,
+                        style="color: #c67346;">+61 455 339 903</a>,
                       <a href="https://wa.me/+8801711315431" target="_blank" class="text-decoration-none"
-                        style="color: #f9874a;">+880 1711 315 431</a>
+                        style="color: #c67346;">+880 1711 315 431</a>
                     </td>
                   </tr>
                   <tr>
-                    <td><i class="fas fa-map-marker-alt" style="color: #ea4335; font-size: small;"> A d d r e s s :</i></td>
+                    <td><i class="fas fa-map-marker-alt" style="color: #bf4338; font-size: small;"> A d d r e s s :</i>
+                    </td>
                     <td>
                       - 6 Cherrington Drive, Tranmere, TAS 7018<br>
                       - Hasna Hena Apartment, 26/8-A, Pallabi, Mirpur, Dhaka-1216
@@ -805,7 +810,48 @@
     document.querySelector('.menu-icon').addEventListener('click', function () {
       document.querySelector('.mobile-menu').classList.toggle('active');
     });
+
+    // Close on option selection
+    document.querySelectorAll('.mobile-menu li a').forEach(function (item) {
+      item.addEventListener('click', function () {
+        document.querySelector('.mobile-menu').classList.remove('active');
+      });
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', function (event) {
+      const isClickInside = document.querySelector('.mobile-nav').contains(event.target);
+      if (!isClickInside) {
+        document.querySelector('.mobile-menu').classList.remove('active');
+      }
+    });
   </script>
+
+  <!-- Theme change theme -->
+  <script>
+    const toggleSwitch = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+
+    if (currentTheme) {
+      document.body.classList.add(currentTheme);
+      if (currentTheme === 'light') {
+        toggleSwitch.checked = true;
+      }
+    }
+
+    toggleSwitch.addEventListener('change', function () {
+      if (this.checked) {
+        document.body.classList.add('light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.body.classList.remove('light');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+  </script>
+
+
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
