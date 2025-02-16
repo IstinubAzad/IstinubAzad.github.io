@@ -2,6 +2,15 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  transition: background-color 0.8s ease, color 0.8s ease;
+}
+
+.light {
+  transition: background-color 0.8s ease, color 0.8s ease;
+}
+
+
 /* Page Loading Spinner Styling */
 .loader {
   position: fixed;
@@ -17,17 +26,140 @@ html {
 }
 
 .spinner {
-  border: 8px solid #f3f3f3; /* Light background */
-  border-top: 8px solid #3498db; /* Blue color for the spinner */
+  border: 8px solid #f3f3f3;
+  /* Light background */
+  border-top: 8px solid #3498db;
+  /* Blue color for the spinner */
   border-radius: 50%;
   width: 60px;
   height: 60px;
   animation: spin 2s linear infinite;
 }
 
+hr {
+  margin: 0 0;
+  border: 1px solid #fac446;
+  opacity: 60%;
+}
+
+span {
+  color: #ffd471;
+}
+
+/* Theme Toggle Button */
+#theme-toggle-wrapper {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  z-index: 9999;
+  display: inline-block;
+  width: 50px;
+  height: 25px;
+}
+
+#theme-toggle-wrapper input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #F1A800;
+  transition: .4s;
+  border-radius: 25px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+#theme-toggle:checked+.slider {
+  background-color: #cccccc;
+}
+
+#theme-toggle:checked+.slider:before {
+  transform: translateX(24px);
+}
+
+
+
+
+/* Top Navigation Bar for Desktop */
+.top-nav {
+  background-color: rgba(28, 61, 90, 0.7);
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.top-nav ul li {
+  margin: 0 15px;
+  position: relative;
+  /* Needed for the vertical line */
+}
+
+/* Add vertical line between navigation items */
+.top-nav ul li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -15px;
+  /* Adjust position to align with the margin */
+  top: 50%;
+  transform: translateY(-50%);
+  height: 20px;
+  /* Height of the vertical line */
+  width: 1px;
+  /* Width of the vertical line */
+  background-color: #E5E5E5;
+  /* Color of the vertical line */
+  opacity: 0.5;
+  /* Adjust opacity for a subtle look */
+}
+
+.top-nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.top-nav ul li {
+  margin: 0 15px;
+}
+
+.top-nav ul li a {
+  color: #E5E5E5;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.top-nav ul li a:hover {
+  color: #F1A800;
+}
+
 /* Mobile Navigation */
 .mobile-nav {
   display: none;
+  position: fixed;
+  z-index: 9999;
 }
 
 .menu-icon {
@@ -39,16 +171,17 @@ html {
 }
 
 .mobile-menu {
+  margin-top: 10%;
   display: none;
   list-style: none;
   padding: 0;
-  background-color: #1C3D5A;
+  background-color: #2a244e;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .mobile-menu li {
-  padding: 10px;
+  padding: 15px;
   text-align: center;
 }
 
@@ -64,9 +197,57 @@ html {
 
 /* Hide desktop sidebar on mobile */
 @media (max-width: 768px) {
-  
-  .wrapper {
+
+  body {
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling */
+    max-width: 100%;
+    /* Ensure body doesn't exceed viewport width */
+  }
+
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+    /* Ensure container doesn't exceed viewport width */
+  }
+
+  /* Add this to your existing CSS */
+  .fixed-top-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 20px;
+    background-color: rgba(28, 61, 90, 0.9);
+    /* Adjust the background color as needed */
+    z-index: 1001;
+    /* Ensure it's above other content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Optional: Add a shadow */
+  }
+
+  /* Adjust the menu icon and theme toggle styles */
+  .fixed-top-layer .menu-icon {
+    display: block;
+    font-size: 24px;
+    cursor: pointer;
+    color: #F1A800;
+  }
+
+  .fixed-top-layer .theme-switch {
+    position: static;
+    /* Reset the position */
+    margin-left: auto;
+    /* Push the theme toggle to the right */
+  }
+
+  .wrapper,
+  .top-nav {
     display: none;
+    position: fixed;
   }
 
   .mobile-nav {
@@ -76,6 +257,35 @@ html {
   .menu-icon {
     display: block;
   }
+
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+  }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 10px;
+    left: 5px;
+    background-color: #2a244e;
+    /* Match your existing menu background color */
+    overflow-y: auto;
+    /* Enable scrolling if the menu content exceeds the viewport height */
+    padding: 20px 0;
+    /* Add some padding for better spacing */
+    list-style: none;
+  }
+
+
+  .mobile-menu li {
+    padding: 15px;
+    text-align: center;
+  }
+
 
   .profile-section img {
     width: 60%;
@@ -90,7 +300,8 @@ html {
     font-size: 1rem;
   }
 
-  .fs-5, h1 {
+  .fs-5,
+  h1 {
     text-align: center;
   }
 
@@ -98,16 +309,25 @@ html {
     text-align: left;
   }
 
-  .education-card, .experience-card {
+  .education-card,
+  .experience-card {
     flex-direction: column;
     text-align: center;
   }
 
-  .education-card .col-md-4, .experience-card .col-md-4 {
+  .education-card .col-md-4,
+  .experience-card .col-md-4 {
     margin-bottom: 20px;
   }
-  
 
+  .floating-section {
+    width: 100%;
+    float: left;
+  }
+
+  section {
+    width: 100%;
+  }
 
   .skills-section .col-md-6 {
     width: 90%;
@@ -117,10 +337,6 @@ html {
     margin-bottom: 20px;
   }
 
-  .projects-section .col-md-4 {
-    width: 90%;
-    margin-bottom: 20px;
-  }
 
   .contact-card table tr {
     display: flex;
@@ -148,8 +364,13 @@ html {
 
 /* Animation for spinner */
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Hide the loader when page is loaded */
@@ -160,15 +381,15 @@ body.loaded .loader {
 /* Body Styling */
 body {
   font-family: 'Century Gothic', sans-serif;
-  background-color: #121618;
+  background-color: rgba(18, 22, 24, 0.9);
+  background-image: url("https://i.pinimg.com/736x/fe/d4/01/fed4014f4abbc68495081512c2642b0d.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  background-blend-mode: overlay; /* Blend the background color and image */
   color: #E5E5E5;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
+
+
 
 /* Main Content */
 main {
@@ -212,12 +433,15 @@ main {
   transform: translateY(-3px);
 }
 
-/* Education Section */
-.education-section {
-  background-color: #122637;
+/* Section */
+.education-section, 
+.experience-section,
+.publications-section {
+  background-color: rgb(18, 38, 55, 0.7);
   padding: 50px 0;
 }
 
+/* Education Section */
 .education-card {
   background-color: #1C3D5A;
   border-radius: 10px;
@@ -274,10 +498,6 @@ main {
 
 
 /* Professional Experience Section Styling */
-.experience-section {
-  background-color: #122637;
-  padding: 50px 0;
-}
 
 .experience-card {
   background-color: #1C3D5A;
@@ -318,7 +538,8 @@ main {
   background-color: #1C3D5A;
   margin-bottom: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  position: relative; /* Needed for the overlay */
+  position: relative;
+  /* Needed for the overlay */
   transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
   opacity: 0.9;
 }
@@ -345,7 +566,8 @@ main {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4); /* Dark overlay for readability */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Dark overlay for readability */
   border-radius: 8px;
 }
 
@@ -395,12 +617,6 @@ main {
   margin: 10px;
 }
 
-
-/* Publications Section Styling */
-.publications-section {
-  background-color: #122637;
-  padding: 50px 0;
-}
 
 /* Publication Card Styling */
 .publication-card {
@@ -467,7 +683,8 @@ main {
   background-color: #1C3D5A;
   border-radius: 10px;
   padding: 20px;
-  height: 230px; /* Set fixed height to ensure space for the button */
+  height: 230px;
+  /* Set fixed height to ensure space for the button */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
 }
@@ -486,24 +703,27 @@ main {
   font-size: 0.9rem;
   color: #fff;
   margin-bottom: 15px;
-  flex-grow: 1; /* Allow the text to take the available space */
+  flex-grow: 1;
+  /* Allow the text to take the available space */
 }
 
 .certification-card .btn {
   font-size: 0.85rem;
   padding: 8px 15px;
   text-decoration: none;
-  align-self: center; /* Center button horizontally */
-  margin-top: auto; /* Ensure button stays at the bottom */
+  align-self: center;
+  /* Center button horizontally */
+  margin-top: auto;
+  /* Ensure button stays at the bottom */
 }
 
 
 .contact-card {
-  background: none;
-  border: 1px solid #FFD700;;
+  background-color: rgb(34, 40, 49, 0.8);
+  border: 1px solid #FFD700;
   border-radius: 15px;
   padding: 20px;
-  color: #333;
+  color: #EEEEEE;
 }
 
 .contact-card .card-title {
@@ -624,11 +844,113 @@ footer {
   position: relative;
   width: 100%;
 }
-  
+
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 
-  
+/* body.light {
+  background-color: #F5F5F5;
+  background-image: url("https://i.pinimg.com/736x/c5/8f/d4/c58fd4c08977bbde3ff073284e95c075.jpg");
+  background-attachment: fixed;
+  color: #141c23;
+} */
+
+body.light {
+  background-color: rgba(255, 237, 190, 0.5);
+  color: #141c23;
+  background-image: url("https://i.pinimg.com/736x/c5/8f/d4/c58fd4c08977bbde3ff073284e95c075.jpg");
+  background-attachment: fixed;
+  background-size: 50%;
+  background-position: top;
+  background-blend-mode: overlay;
+}
+
+body.light .top-nav {
+  background-color: rgb(52, 152, 219, 0.7);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.light .top-nav ul li a {
+  color: #ffffff;
+}
+
+body.light .top-nav ul li a:hover {
+  color: #a85cf3;
+}
+
+body.light .profile-section {
+  color: #000000;
+}
+
+body.light .education-card,
+body.light .experience-card,
+body.light .project-card,
+body.light .publication-card,
+body.light .certification-card {
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.light hr {
+  border: 1px solid #2980B9;
+}
+
+body.light .btn {
+  background-color: #83cdff;
+  color: #074550;
+}
+
+body.light .btn:hover {
+  background-color: #2980B9;
+  color: #ffffff;
+}
+
+body.light .social-icons a {
+  color: #333;
+}
+
+body.light p {
+  color: #131313;
+}
+
+body.light span,
+body.light h5 {
+  color: #2980B9;
+}
+
+body.light .education-section,
+body.light .experience-section,
+body.light .project-section,
+body.light .publications-section,
+body.light .certification-section,
+body.light .floating-section {
+  background-color: rgba(172, 213, 241, 0.6)
+  ;
+}
+
+body.light .wrapper .icon {
+  border: 2px solid #2980B9;
+}
+
+body.light .social-icons a:hover {
+  color: #2980B9;
+}
+
+body.light .contact-card {
+  background-color: rgb(172, 213, 241, 0.7);
+  color: #112D4D
+}
+
+body.light footer {
+  background-color: #c2dce0;
+}
