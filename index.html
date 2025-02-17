@@ -15,7 +15,7 @@
     content="Explore the portfolio of Istinub Azad, a Computer Science graduate and Master of IT student at UTAS specializing in Cyber Security and AI">
   <meta name="keywords" content="Istinub Azad, Computer Science, MITS, UTAS, AI, Machine Learning, Cyber Security">
 
-  <meta property="og:title" content="Istinub Azad | AI, Machine Learning, Digital Art Portfolio">
+  <meta property="og:title" content="Istinub Azad | Cyber Security, A.I., IT Enthusiast">
   <meta property="og:description"
     content="Explore the portfolio of Istinub Azad, a Computer Science graduate and Master of IT student at UTAS specializing in Cyber Security and AI">
   <meta property="og:image" content="https://istinubazad.github.io/images/istinub.png">
@@ -233,15 +233,14 @@
 
       body {
         overflow-x: hidden;
-        /* Prevent horizontal scrolling */
         max-width: 100%;
-        /* Ensure body doesn't exceed viewport width */
+
       }
 
       .container {
         padding-left: 15px;
         padding-right: 15px;
-        /* Ensure container doesn't exceed viewport width */
+
       }
 
       /* Add this to your existing CSS */
@@ -414,14 +413,26 @@
     /* Body Styling */
     body {
       font-family: 'Century Gothic', sans-serif;
-      background-color: rgba(18, 22, 24, 0.9);
-      background-image: url("https://i.pinimg.com/736x/fe/d4/01/fed4014f4abbc68495081512c2642b0d.jpg");
-      background-attachment: fixed;
+      background-color: rgba(18, 22, 24);
       background-size: cover;
-      background-blend-mode: overlay;
-      /* Blend the background color and image */
       color: #E5E5E5;
     }
+
+    body::before {
+      content: '';
+      background-image: url("https://i.pinimg.com/736x/fe/d4/01/fed4014f4abbc68495081512c2642b0d.jpg");
+      background-size: cover;
+      background-attachment: fixed;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.08;
+      /* Adjust transparency */
+    }
+
 
 
 
@@ -892,21 +903,24 @@
     }
 
 
-    /* body.light {
-  background-color: #F5F5F5;
-  background-image: url("https://i.pinimg.com/736x/c5/8f/d4/c58fd4c08977bbde3ff073284e95c075.jpg");
-  background-attachment: fixed;
-  color: #141c23;
-} */
-
     body.light {
-      background-color: rgba(255, 237, 190, 0.5);
+      background-color: rgba(255, 237, 190);
       color: #141c23;
+    }
+
+    body.light::before {
+      content: '';
       background-image: url("https://i.pinimg.com/736x/c5/8f/d4/c58fd4c08977bbde3ff073284e95c075.jpg");
-      background-attachment: fixed;
       background-size: 50%;
-      background-position: top;
-      background-blend-mode: overlay;
+      background-attachment: fixed;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.75;
+      /* Adjust transparency */
     }
 
     body.light .top-nav {
@@ -991,7 +1005,7 @@
     /* Mobile Responsive Styles */
     @media (max-width: 768px) {
 
-      body.light {
+      body.light::before {
         background-size: cover;
       }
 
@@ -1119,7 +1133,7 @@
 
     <!-- Desktop Sidebar -->
     <ul class="wrapper">
-      <a href="#AboutMe">
+      <a href="#AboutMeProfile">
         <li class="icon first">
           <span class="tooltip">Profile</span>
         </li>
@@ -1162,7 +1176,7 @@
     </ul>
 
     <!-- Profile Section with Picture, Name, and About Me -->
-    <section id="AboutMe" class="profile-section mt-5">
+    <section id="#AboutMe" class="profile-section mt-5">
       <div class="container">
         <div class="row align-items-center">
           <!-- Picture Column -->
@@ -1825,9 +1839,6 @@
       }
     });
   </script>
-
-
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
