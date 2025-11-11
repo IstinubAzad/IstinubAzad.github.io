@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PDF Merger by Istinub Azad</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* -------- Global Styles -------- */
+  body {
+    font-family: "Inter", sans-serif;
+    background:
+      linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)),
+      url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 28px;
+    color: #222;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  }
+
+  header p {
+    margin-top: 6px;
+    font-size: 15px;
+    color: #555;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.96);
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    padding: 32px;
+    width: 380px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+  }
+
+  /* --- Drop Zone --- */
+  .drop-zone {
+    position: relative;
+    border: 2px dashed #c6c9d1;
+    border-radius: 10px;
+    padding: 36px 20px;
+    color: #555;
+    background: #fafafa;
+    transition: all 0.25s;
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .drop-zone:hover,
+  .drop-zone.dragover {
+    border-color: #007bff;
+    background: #eef5ff;
+  }
+
+  .drop-zone p {
+    margin: 0;
+    font-size: 15px;
+    color: #444;
+    pointer-events: none;
+  }
+
+  .drop-zone input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  /* --- File List --- */
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+    max-height: 150px;
+    overflow-y: auto;
+  }
+
+  li {
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 8px 10px;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+  }
+
+  li span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 250px;
+  }
+
+  li button {
+    background: none;
+    border: none;
+    color: #d00;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  /* --- Merge Button --- */
+  #mergeBtn {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  #mergeBtn:hover {
+    background: #0056b3;
+    transform: scale(1.03);
+  }
+
+  .status {
+    margin-top: 12px;
+    color: #555;
+    font-size: 14px;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 13px;
+    color: #555;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+  }
+
+  footer a {
+    color: #007bff;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 450px) {
+    .card { width: 90%; padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>PDF Merger</h1>
+  <p>A simple but handy app for daily use</p>
+</header>
+
+<div class="card">
+  <div class="drop-zone" id="dropZone">
+    <p>📂 <strong>Click</strong> or <strong>Drag & Drop</strong> PDFs here</p>
+    <input type="file" id="fileInput" multiple accept="application/pdf">
+  </div>
+
+  <ul id="fileList"></ul>
+
+  <button id="mergeBtn">Merge PDFs</button>
+  <div class="status" id="statusMsg"></div>
+</div>
+
+<footer>
+  Created by <a href="https://istinubazad.github.io/" target="_blank">Istinub Azad</a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script>
+const { PDFDocument } = PDFLib;
+let selectedFiles = [];
+
+const dropZone = document.getElementById("dropZone");
+const fileInput = document.getElementById("fileInput");
+const fileList = document.getElementById("fileList");
+const statusMsg = document.getElementById("statusMsg");
+const mergeBtn = document.getElementById("mergeBtn");
+
+fileInput.addEventListener("change", e => {
+  addFiles([...e.target.files]);
+  fileInput.value = "";
+});
+
+dropZone.addEventListener("dragover", e => {
+  e.preventDefault();
+  dropZone.classList.add("dragover");
+});
+dropZone.addEventListener("dragleave", () => dropZone.classList.remove("dragover"));
+dropZone.addEventListener("drop", e => {
+  e.preventDefault();
+  dropZone.classList.remove("dragover");
+  addFiles([...e.dataTransfer.files]);
+});
+
+function addFiles(files) {
+  files.forEach(f => { if (f.type === "application/pdf") selectedFiles.push(f); });
+  renderList();
+}
+
+function renderList() {
+  fileList.innerHTML = "";
+  selectedFiles.forEach((f, i) => {
+    const li = document.createElement("li");
+    li.innerHTML = `<span>${f.name}</span><button title="Remove" onclick="removeFile(${i})">🗑️</button>`;
+    fileList.appendChild(li);
+  });
+}
+
+window.removeFile = i => {
+  selectedFiles.splice(i, 1);
+  renderList();
+};
+
+mergeBtn.addEventListener("click", async () => {
+  if (selectedFiles.length < 2) {
+    statusMsg.textContent = "Please select at least two PDF files.";
+    return;
+  }
+  statusMsg.textContent = "Merging PDFs...";
+  try {
+    const mergedPdf = await PDFDocument.create();
+    for (const file of selectedFiles) {
+      const bytes = await file.arrayBuffer();
+      const pdf = await PDFDocument.load(bytes);
+      const pages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+      pages.forEach(p => mergedPdf.addPage(p));
+    }
+    const mergedBytes = await mergedPdf.save();
+    const blob = new Blob([mergedBytes], { type: "application/pdf" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "merged.pdf";
+    a.click();
+    statusMsg.textContent = "✅ Merge complete! File downloaded.";
+  } catch (err) {
+    console.error(err);
+    statusMsg.textContent = "❌ Error merging PDFs.";
+  }
+});
+</script>
+</body>
+</html>
