@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>PDF Merger by Istinub Azad</title>
+<title>PDF & Image Merger by Istinub Azad</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
-/* --- Base Layout --- */
 body{
   font-family:"Inter",sans-serif;
   background:
@@ -24,62 +23,42 @@ header p{margin-top:6px;font-size:15px;color:#555;}
   border-radius:14px;box-shadow:0 8px 25px rgba(0,0,0,.08);
   padding:24px;width:100%;max-width:980px;text-align:center;backdrop-filter:blur(8px);
 }
-
-/* --- Upload Zone --- */
 .drop-zone{
   position:relative;border:2px dashed #c6c9d1;border-radius:10px;padding:26px;
   color:#555;background:#fafafa;transition:all .25s;cursor:pointer;margin-bottom:18px;
 }
 .drop-zone:hover,.drop-zone.dragover{border-color:#007bff;background:#eef5ff;}
 .drop-zone input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;}
-
-/* --- Grid of PDF Cards --- */
 .grid{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-bottom:18px;}
-.file-card{
-  width:180px;background:#f9fafb;border-radius:10px;box-shadow:0 3px 6px rgba(0,0,0,.05);
-  padding:10px;display:flex;flex-direction:column;align-items:center;cursor:grab;transition:transform .15s;
-}
+.file-card{width:180px;background:#f9fafb;border-radius:10px;box-shadow:0 3px 6px rgba(0,0,0,.05);
+  padding:10px;display:flex;flex-direction:column;align-items:center;cursor:grab;transition:transform .15s;}
 .file-card.dragging{opacity:.55;transform:scale(.97);}
 .file-card.drag-over{outline:2px dashed #007bff;}
 .file-card canvas{border:1px solid #ddd;border-radius:6px;width:100%;height:210px;object-fit:cover;}
 .file-name{margin-top:8px;font-size:13px;color:#333;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:100%;}
 .actions{display:flex;gap:6px;margin-top:6px;}
-.actions button{
-  border:none;border-radius:5px;padding:4px 6px;font-size:12px;cursor:pointer;
-  background:#e9ecef;color:#333;transition:background .2s;
-}
+.actions button{border:none;border-radius:5px;padding:4px 6px;font-size:12px;cursor:pointer;
+  background:#e9ecef;color:#333;transition:background .2s;}
 .actions button:hover{background:#d7dbe0;}
 .delete-btn{background:#fdecec;color:#d00;}
 .delete-btn:hover{background:#fbd6d6;}
-
-/* --- Merge Button --- */
-#mergeBtn{
-  background:#007bff;color:#fff;border:none;border-radius:6px;padding:10px 20px;
-  font-size:16px;cursor:pointer;transition:background .2s,transform .1s;
-}
+#mergeBtn{background:#007bff;color:#fff;border:none;border-radius:6px;padding:10px 20px;
+  font-size:16px;cursor:pointer;transition:background .2s,transform .1s;}
 #mergeBtn:hover{background:#0056b3;transform:scale(1.03);}
 .status{margin-top:12px;color:#555;font-size:14px;}
-
 footer{text-align:center;margin-top:18px;font-size:13px;color:#555;}
 footer a{color:#007bff;font-weight:600;text-decoration:none;}
 footer a:hover{text-decoration:underline;}
-
-/* --- Modal: Preview & Edit --- */
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:9999;}
 .modal.open{display:flex;}
 .modal-content{background:#fff;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25);
   width:min(1000px,96vw);max-height:92vh;display:flex;flex-direction:column;}
 .modal-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid #eee;gap:10px;flex-wrap:wrap;}
-.modal-title{font-weight:600;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:48ch;}
 .modal-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
-.modal-actions button{background:#eef1f4;border:none;border-radius:6px;padding:6px 10px;cursor:pointer;font-size:13px;}
-.modal-actions button:hover{background:#dfe4ea;}
-.close-btn{background:#fdecec;color:#d00;}
-.close-btn:hover{background:#fbd6d6;}
 .canvas-wrap{padding:12px;overflow:auto;display:flex;justify-content:center;align-items:center;background:#f7f8fa;}
 #fullCanvas{background:#fff;border:1px solid #e5e7eb;border-radius:8px;max-width:100%;}
 .thumb-strip{display:flex;overflow-x:auto;gap:6px;padding:8px 10px;background:#fafafa;border-top:1px solid #eee;}
-.thumb-strip canvas{border:1px solid #ccc;border-radius:4px;height:84px;cursor:pointer;transition:transform .2s;}
+.thumb-strip canvas{border:1px solid #ccc;border-radius:4px;height:84px;cursor:pointer;}
 .thumb-strip canvas:hover{transform:scale(1.08);border-color:#007bff;}
 .modal-footer{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;border-top:1px solid #eee;font-size:13px;color:#555;}
 @media(max-width:560px){.file-card{width:45%;}}
@@ -88,19 +67,19 @@ footer a:hover{text-decoration:underline;}
 <body>
 
 <header>
-  <h1>PDF Merger</h1>
+  <h1>PDF & Image Merger</h1>
   <p>A simple but handy app for daily use</p>
 </header>
 
 <div class="card">
   <div class="drop-zone" id="dropZone">
-    <p>📂 <strong>Click</strong> or <strong>Drag & Drop</strong> PDFs here</p>
-    <input type="file" id="fileInput" multiple accept="application/pdf">
+    <p>📂 <strong>Click</strong> or <strong>Drag & Drop</strong> PDFs or Images here</p>
+    <input type="file" id="fileInput" multiple accept="application/pdf,image/*">
   </div>
 
   <div class="grid" id="fileGrid"></div>
 
-  <button id="mergeBtn">Merge PDFs (in shown order)</button>
+  <button id="mergeBtn">Merge Files (in shown order)</button>
   <div class="status" id="statusMsg"></div>
 </div>
 
@@ -112,13 +91,9 @@ footer a:hover{text-decoration:underline;}
 <div class="modal" id="previewModal" aria-hidden="true">
   <div class="modal-content">
     <div class="modal-header">
-      <div class="modal-title" id="modalTitle">Preview</div>
+      <div id="modalTitle" class="modal-title">Preview</div>
       <div class="modal-actions">
         <span id="pageInfo">Page 1 / 1</span>
-        <button id="prevPage">◀</button>
-        <button id="nextPage">▶</button>
-        <button id="zoomOut">➖</button>
-        <button id="zoomIn">➕</button>
         <button id="rotateLeft">↩️</button>
         <button id="rotateRight">↪️</button>
         <button id="resetRot">🔁 Reset</button>
@@ -126,48 +101,51 @@ footer a:hover{text-decoration:underline;}
       </div>
     </div>
     <div class="canvas-wrap"><canvas id="fullCanvas"></canvas></div>
-    <div class="thumb-strip" id="thumbStrip"></div>
-    <div class="modal-footer">
-      <div id="hint">Tips: ←/→ page • +/- zoom • L/R rotate • Esc close</div>
-      <div id="fileInfo"></div>
-    </div>
+    <div class="modal-footer"><div id="fileInfo"></div></div>
   </div>
 </div>
 
-<!-- Libraries -->
 <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
 pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-const { PDFDocument, degrees } = PDFLib;
-let selectedFiles = [];
+const{PDFDocument,degrees}=PDFLib;
+let selectedFiles=[];
 
-const dropZone=document.getElementById("dropZone");
-const fileInput=document.getElementById("fileInput");
-const fileGrid=document.getElementById("fileGrid");
-const statusMsg=document.getElementById("statusMsg");
-const mergeBtn=document.getElementById("mergeBtn");
+const dropZone=document.getElementById("dropZone"),
+fileInput=document.getElementById("fileInput"),
+fileGrid=document.getElementById("fileGrid"),
+statusMsg=document.getElementById("statusMsg"),
+mergeBtn=document.getElementById("mergeBtn");
 
-/* Modal elements */
-const modal=document.getElementById("previewModal");
-const modalTitle=document.getElementById("modalTitle");
-const pageInfo=document.getElementById("pageInfo");
-const fullCanvas=document.getElementById("fullCanvas");
-const ctx=fullCanvas.getContext("2d");
-const btnPrev=prevPage,btnNext=nextPage,btnZoomIn=zoomIn,btnZoomOut=zoomOut,btnRotL=rotateLeft,btnRotR=rotateRight,btnReset=resetRot,btnClose=closeModal;
-const thumbStrip=document.getElementById("thumbStrip"),fileInfo=document.getElementById("fileInfo");
+/* Modal */
+const modal=document.getElementById("previewModal"),
+modalTitle=document.getElementById("modalTitle"),
+fullCanvas=document.getElementById("fullCanvas"),
+ctx=fullCanvas.getContext("2d"),
+btnRotL=document.getElementById("rotateLeft"),
+btnRotR=document.getElementById("rotateRight"),
+btnReset=document.getElementById("resetRot"),
+btnClose=document.getElementById("closeModal"),
+fileInfo=document.getElementById("fileInfo");
+let currentFileIndex=null,currentRotation=0;
 
-let currentFileIndex=null,currentPdf=null,currentPageNumber=1,currentScale=1.25,isModalOpen=false;
-
-/* File upload + drag */
+/* Upload handlers */
 fileInput.onchange=e=>{addFiles([...e.target.files]);fileInput.value="";};
 dropZone.ondragover=e=>{e.preventDefault();dropZone.classList.add("dragover");};
 dropZone.ondragleave=()=>dropZone.classList.remove("dragover");
 dropZone.ondrop=e=>{e.preventDefault();dropZone.classList.remove("dragover");addFiles([...e.dataTransfer.files]);};
 
-function addFiles(fs){fs.forEach(f=>{if(f.type==="application/pdf")selectedFiles.push({file:f,pageCount:0,rotations:{}})});renderGrid();}
+function addFiles(files){
+  files.forEach(f=>{
+    if(f.type==="application/pdf"||f.type.startsWith("image/")){
+      selectedFiles.push({file:f,rotations:{},type:f.type});
+    }
+  });
+  renderGrid();
+}
 
-/* Grid */
+/* Render grid cards */
 async function renderGrid(){
   fileGrid.innerHTML="";
   for(let i=0;i<selectedFiles.length;i++){
@@ -178,7 +156,8 @@ async function renderGrid(){
     card.dataset.index=i;
     const canvas=document.createElement("canvas");
     const name=document.createElement("div");
-    name.className="file-name";name.textContent=`${i+1}. ${it.file.name}`;
+    name.className="file-name";
+    name.textContent=`${i+1}. ${it.file.name}`;
     const actions=document.createElement("div");
     actions.className="actions";
     actions.innerHTML=`<button onclick="openPreview(${i})">👁 Preview</button><button class="delete-btn" onclick="removeFile(${i})">🗑</button>`;
@@ -189,21 +168,31 @@ async function renderGrid(){
     card.addEventListener("dragleave",dragLeave);
     card.addEventListener("drop",dropCard);
     card.addEventListener("dragend",dragEnd);
-    try{
-      const ab=await it.file.arrayBuffer();
-      const pdf=await pdfjsLib.getDocument({data:ab}).promise;
-      if(!it.pageCount)it.pageCount=pdf.numPages;
-      const p=await pdf.getPage(1);
-      const vp=p.getViewport({scale:.42});
-      const ctx2=canvas.getContext("2d");
-      canvas.width=vp.width;canvas.height=vp.height;
-      await p.render({canvasContext:ctx2,viewport:vp}).promise;
-    }catch(e){console.error(e);}
+    if(it.type==="application/pdf"){
+      try{
+        const ab=await it.file.arrayBuffer();
+        const pdf=await pdfjsLib.getDocument({data:ab}).promise;
+        const page=await pdf.getPage(1);
+        const vp=page.getViewport({scale:.4});
+        const ctx2=canvas.getContext("2d");
+        canvas.width=vp.width;canvas.height=vp.height;
+        await page.render({canvasContext:ctx2,viewport:vp}).promise;
+      }catch(e){console.error(e);}
+    }else{ // image
+      const img=new Image();
+      img.onload=()=>{
+        const scale=180/img.width;
+        canvas.width=img.width*scale;
+        canvas.height=img.height*scale;
+        canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);
+      };
+      img.src=URL.createObjectURL(it.file);
+    }
   }
 }
 window.removeFile=i=>{selectedFiles.splice(i,1);renderGrid();};
 
-/* Drag reorder */
+/* Reorder drag */
 let dragSrc=null;
 function dragStart(e){dragSrc=this;this.classList.add("dragging");}
 function dragOver(e){e.preventDefault();this.classList.add("drag-over");}
@@ -215,96 +204,106 @@ function dropCard(e){
 }
 function dragEnd(){this.classList.remove("dragging");}
 
-/* Modal open + render */
+/* Preview modal */
 window.openPreview=async(i)=>{
-  currentFileIndex=i;
-  const it=selectedFiles[i];
+  currentFileIndex=i;const it=selectedFiles[i];
   modalTitle.textContent=it.file.name;
-  currentScale=1.25;currentPageNumber=1;
-  const ab=await it.file.arrayBuffer();
-  currentPdf=await pdfjsLib.getDocument({data:ab}).promise;
-  it.pageCount=currentPdf.numPages;
-  isModalOpen=true;modal.classList.add("open");modal.setAttribute("aria-hidden","false");
-  await buildThumbs();await renderPage();
+  currentRotation=it.rotations[0]||0;
+  modal.classList.add("open");modal.setAttribute("aria-hidden","false");
+  if(it.type==="application/pdf"){
+    const ab=await it.file.arrayBuffer();const pdf=await pdfjsLib.getDocument({data:ab}).promise;
+    const page=await pdf.getPage(1);const vp=page.getViewport({scale:1,rotation:currentRotation});
+    fullCanvas.width=vp.width;fullCanvas.height=vp.height;
+    await page.render({canvasContext:ctx,viewport:vp}).promise;
+  }else{
+    const img=new Image();
+    img.onload=()=>{
+      const scale=Math.min(800/img.width,1);
+      fullCanvas.width=img.width*scale;fullCanvas.height=img.height*scale;
+      const cctx=fullCanvas.getContext("2d");
+      cctx.save();
+      cctx.translate(fullCanvas.width/2,fullCanvas.height/2);
+      cctx.rotate(currentRotation*Math.PI/180);
+      cctx.drawImage(img,-img.width*scale/2,-img.height*scale/2,img.width*scale,img.height*scale);
+      cctx.restore();
+    };
+    img.src=URL.createObjectURL(it.file);
+  }
+  fileInfo.textContent=`Rotation: ${currentRotation}°`;
 };
-function closePreview(){
-  isModalOpen=false;modal.classList.remove("open");
-  modal.setAttribute("aria-hidden","true");
-  currentPdf=null;currentFileIndex=null;thumbStrip.innerHTML="";
-}
-async function renderPage(){
-  if(!currentPdf||currentFileIndex===null)return;
+function closePreview(){modal.classList.remove("open");modal.setAttribute("aria-hidden","true");}
+
+/* Rotation controls */
+btnRotL.onclick=()=>{updateRotation(-90);};
+btnRotR.onclick=()=>{updateRotation(90);};
+btnReset.onclick=()=>{updateRotation(0,true);};
+btnClose.onclick=()=>{closePreview();updateThumb(currentFileIndex);};
+
+function updateRotation(delta,reset=false){
   const it=selectedFiles[currentFileIndex];
-  const p=await currentPdf.getPage(currentPageNumber);
-  const rot=it.rotations[currentPageNumber-1]||0;
-  const vp=p.getViewport({scale:currentScale,rotation:rot});
-  fullCanvas.width=vp.width;fullCanvas.height=vp.height;
-  await p.render({canvasContext:ctx,viewport:vp}).promise;
-  pageInfo.textContent=`Page ${currentPageNumber} / ${currentPdf.numPages}`;
-  fileInfo.textContent=`Zoom ${(currentScale*100).toFixed(0)}% · Rot ${rot}°`;
-  [...thumbStrip.children].forEach((c,idx)=>c.style.outline=(idx+1===currentPageNumber)?"2px solid #007bff":"none");
+  if(reset)currentRotation=0;else currentRotation=(currentRotation+delta+360)%360;
+  it.rotations[0]=currentRotation;
+  openPreview(currentFileIndex);
 }
-async function buildThumbs(){
-  thumbStrip.innerHTML="";
-  for(let i=1;i<=currentPdf.numPages;i++){
-    const c=document.createElement("canvas");
-    thumbStrip.appendChild(c);
-    const pg=await currentPdf.getPage(i);
-    const vp=pg.getViewport({scale:0.16});
-    c.width=vp.width;c.height=vp.height;
-    pg.render({canvasContext:c.getContext("2d"),viewport:vp});
-    c.onclick=async()=>{currentPageNumber=i;await renderPage();};
+
+/* Update thumbnail when closing */
+async function updateThumb(idx){
+  const it=selectedFiles[idx];
+  const card=fileGrid.querySelector(`.file-card[data-index="${idx}"]`);
+  if(!card)return;
+  const canvas=card.querySelector("canvas");
+  if(it.type==="application/pdf"){
+    try{
+      const ab=await it.file.arrayBuffer();
+      const pdf=await pdfjsLib.getDocument({data:ab}).promise;
+      const page=await pdf.getPage(1);
+      const vp=page.getViewport({scale:.4,rotation:it.rotations[0]||0});
+      canvas.width=vp.width;canvas.height=vp.height;
+      await page.render({canvasContext:canvas.getContext("2d"),viewport:vp}).promise;
+    }catch(e){console.error(e);}
+  }else{
+    const img=new Image();
+    img.onload=()=>{
+      const scale=180/img.width;
+      canvas.width=img.width*scale;canvas.height=img.height*scale;
+      const cctx=canvas.getContext("2d");
+      cctx.save();
+      cctx.translate(canvas.width/2,canvas.height/2);
+      cctx.rotate((it.rotations[0]||0)*Math.PI/180);
+      cctx.drawImage(img,-canvas.width/2,-canvas.height/2,canvas.width,canvas.height);
+      cctx.restore();
+    };
+    img.src=URL.createObjectURL(it.file);
   }
 }
 
-/* Controls */
-btnPrev.onclick=async()=>{if(currentPageNumber>1){currentPageNumber--;await renderPage();}};
-btnNext.onclick=async()=>{if(currentPageNumber<currentPdf.numPages){currentPageNumber++;await renderPage();}};
-btnZoomIn.onclick=async()=>{currentScale=Math.min(currentScale+.25,3);await renderPage();};
-btnZoomOut.onclick=async()=>{currentScale=Math.max(currentScale-.25,.5);await renderPage();};
-btnRotL.onclick=async()=>{const it=selectedFiles[currentFileIndex];const i=currentPageNumber-1;it.rotations[i]=(it.rotations[i]||0)-90;if(it.rotations[i]<0)it.rotations[i]+=360;await renderPage();};
-btnRotR.onclick=async()=>{const it=selectedFiles[currentFileIndex];const i=currentPageNumber-1;it.rotations[i]=(it.rotations[i]||0)+90;if(it.rotations[i]>=360)it.rotations[i]-=360;await renderPage();};
-btnReset.onclick=async()=>{selectedFiles[currentFileIndex].rotations={};await renderPage();};
-
-/* Close modal + update thumbnail */
-btnClose.onclick=async()=>{
-  const idx=currentFileIndex;
-  closePreview();
-  if(idx!==null&&selectedFiles[idx]){
-    const it=selectedFiles[idx];
-    const card=fileGrid.querySelector(`.file-card[data-index="${idx}"]`);
-    if(card){
-      const canvas=card.querySelector("canvas");
-      try{
-        const ab=await it.file.arrayBuffer();
-        const pdf=await pdfjsLib.getDocument({data:ab}).promise;
-        const p=await pdf.getPage(1);
-        const rot=it.rotations[0]||0;
-        const vp=p.getViewport({scale:.42,rotation:rot});
-        canvas.width=vp.width;canvas.height=vp.height;
-        await p.render({canvasContext:canvas.getContext("2d"),viewport:vp}).promise;
-      }catch(e){console.error("Thumb update failed:",e);}
-    }
-  }
-};
-
-/* Merge PDFs */
+/* Merge PDFs + Images */
 mergeBtn.onclick=async()=>{
-  if(selectedFiles.length<2){statusMsg.textContent="Please select at least two PDFs.";return;}
-  statusMsg.textContent="Merging in shown order...";
+  if(selectedFiles.length<1){statusMsg.textContent="Please select at least one file.";return;}
+  statusMsg.textContent="Merging...";
   try{
     const merged=await PDFDocument.create();
     for(const it of selectedFiles){
-      const bytes=await it.file.arrayBuffer();
-      const src=await PDFDocument.load(bytes);
-      const pages=await merged.copyPages(src,src.getPageIndices());
-      pages.forEach((p,i)=>{const r=it.rotations[i]||0;if(r)p.setRotation(degrees(r));merged.addPage(p);});
+      if(it.type==="application/pdf"){
+        const bytes=await it.file.arrayBuffer();
+        const src=await PDFDocument.load(bytes);
+        const cp=await merged.copyPages(src,src.getPageIndices());
+        cp.forEach((p,i)=>{const r=it.rotations[i]||0;if(r)p.setRotation(degrees(r));merged.addPage(p);});
+      }else{
+        const imgBytes=await it.file.arrayBuffer();
+        let imgEmbed;
+        if(it.type==="image/png")imgEmbed=await merged.embedPng(imgBytes);
+        else imgEmbed=await merged.embedJpg(imgBytes);
+        const {width,height}=imgEmbed.scale(1);
+        const page=merged.addPage([width,height]);
+        const r=(it.rotations[0]||0)*Math.PI/180;
+        page.drawImage(imgEmbed,{x:0,y:0,width,height,rotate:r?{type:"degrees",angle:it.rotations[0]}:undefined});
+      }
     }
     const mergedBytes=await merged.save();
     const blob=new Blob([mergedBytes],{type:"application/pdf"});
     const a=document.createElement("a");
-    a.href=URL.createObjectURL(blob);
-    a.download="merged.pdf";a.click();
+    a.href=URL.createObjectURL(blob);a.download="merged.pdf";a.click();
     statusMsg.textContent="✅ Merged successfully!";
   }catch(e){console.error(e);statusMsg.textContent="❌ Merge failed.";}
 };
