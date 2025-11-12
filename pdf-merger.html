@@ -61,6 +61,16 @@ footer a:hover{text-decoration:underline;}
 .thumb-strip canvas{border:1px solid #ccc;border-radius:4px;height:84px;cursor:pointer;}
 .thumb-strip canvas:hover{transform:scale(1.08);border-color:#007bff;}
 .modal-footer{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;border-top:1px solid #eee;font-size:13px;color:#555;}
+/* Compression Modal */
+#compressionModal .modal-content{
+  width:300px;text-align:center;padding:20px;gap:12px;display:flex;flex-direction:column;
+}
+#compressionModal button{
+  border:none;border-radius:6px;padding:8px;font-size:15px;cursor:pointer;
+  background:#007bff;color:white;transition:background .2s;
+}
+#compressionModal button:hover{background:#0056b3;}
+.hidden{display:none;}
 @media(max-width:560px){.file-card{width:45%;}}
 </style>
 </head>
@@ -87,7 +97,7 @@ footer a:hover{text-decoration:underline;}
   Created by <a href="https://istinubazad.github.io/" target="_blank">Istinub Azad</a>
 </footer>
 
-<!-- Modal -->
+<!-- Preview Modal -->
 <div class="modal" id="previewModal" aria-hidden="true">
   <div class="modal-content">
     <div class="modal-header">
@@ -105,11 +115,23 @@ footer a:hover{text-decoration:underline;}
   </div>
 </div>
 
+<!-- Compression Modal -->
+<div class="modal" id="compressionModal">
+  <div class="modal-content">
+    <h3>Select Compression Level</h3>
+    <button onclick="confirmCompression('none')">No Compression (Original Quality)</button>
+    <button onclick="confirmCompression('high')">High (Smaller file)</button>
+    <button onclick="confirmCompression('medium')">Medium (Balanced)</button>
+    <button onclick="confirmCompression('low')">Low (Best quality)</button>
+  </div>
+</div> 
+
+
 <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
 pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-const{PDFDocument,degrees}=PDFLib;
+const { PDFDocument, degrees } = PDFLib;
 let selectedFiles=[];
 
 const dropZone=document.getElementById("dropZone"),
@@ -277,36 +299,117 @@ async function updateThumb(idx){
   }
 }
 
-/* Merge PDFs + Images */
-mergeBtn.onclick=async()=>{
-  if(selectedFiles.length<1){statusMsg.textContent="Please select at least one file.";return;}
-  statusMsg.textContent="Merging...";
-  try{
-    const merged=await PDFDocument.create();
-    for(const it of selectedFiles){
-      if(it.type==="application/pdf"){
-        const bytes=await it.file.arrayBuffer();
-        const src=await PDFDocument.load(bytes);
-        const cp=await merged.copyPages(src,src.getPageIndices());
-        cp.forEach((p,i)=>{const r=it.rotations[i]||0;if(r)p.setRotation(degrees(r));merged.addPage(p);});
-      }else{
-        const imgBytes=await it.file.arrayBuffer();
-        let imgEmbed;
-        if(it.type==="image/png")imgEmbed=await merged.embedPng(imgBytes);
-        else imgEmbed=await merged.embedJpg(imgBytes);
-        const {width,height}=imgEmbed.scale(1);
-        const page=merged.addPage([width,height]);
-        const r=(it.rotations[0]||0)*Math.PI/180;
-        page.drawImage(imgEmbed,{x:0,y:0,width,height,rotate:r?{type:"degrees",angle:it.rotations[0]}:undefined});
-      }
+/* --- Build merged PDF (keeps previous behavior, no download here) --- */
+async function buildMergedPDFBlob(){
+  const merged=await PDFDocument.create();
+
+  for(const it of selectedFiles){
+    if(it.type==="application/pdf"){
+      const bytes=await it.file.arrayBuffer();
+      const src=await PDFDocument.load(bytes);
+      const pages=await merged.copyPages(src, src.getPageIndices());
+      pages.forEach((p, i)=>{
+        const r=it.rotations[i]||it.rotations[0]||0;
+        if(r) p.setRotation(degrees(r));
+        merged.addPage(p);
+      });
+    }else{
+      const imgBytes=await it.file.arrayBuffer();
+      let imgEmbed;
+      if(it.type==="image/png") imgEmbed=await merged.embedPng(imgBytes);
+      else imgEmbed=await merged.embedJpg(imgBytes);
+      const angle=it.rotations[0]||0;
+      const { width, height } = imgEmbed;
+      const page=merged.addPage([width, height]);
+      page.drawImage(imgEmbed,{ x:0,y:0,width,height, rotate: degrees(angle) });
     }
-    const mergedBytes=await merged.save();
-    const blob=new Blob([mergedBytes],{type:"application/pdf"});
-    const a=document.createElement("a");
-    a.href=URL.createObjectURL(blob);a.download="merged.pdf";a.click();
-    statusMsg.textContent="✅ Merged successfully!";
-  }catch(e){console.error(e);statusMsg.textContent="❌ Merge failed.";}
+  }
+
+  const mergedBytes=await merged.save();
+  return new Blob([mergedBytes],{type:"application/pdf"});
+}
+
+/* --- Compression Logic --- */
+async function compressPDF(pdfBlob, level='medium'){
+  const arrayBuffer=await pdfBlob.arrayBuffer();
+  const pdf=await pdfjsLib.getDocument({data:arrayBuffer}).promise;
+  const compressedPdf=await PDFLib.PDFDocument.create();
+
+  const canvas=document.createElement("canvas");
+  const cctx=canvas.getContext("2d");
+
+  // Quality map
+  let quality=0.75;
+  if(level==='high') quality=0.5;
+  else if(level==='low') quality=0.9;
+
+  for(let i=1;i<=pdf.numPages;i++){
+    const page=await pdf.getPage(i);
+    const vp=page.getViewport({scale:1.0});
+    canvas.width=vp.width;canvas.height=vp.height;
+
+    await page.render({canvasContext:cctx,viewport:vp}).promise;
+
+    const imgData=canvas.toDataURL('image/jpeg', quality);
+    const imgBytes=await fetch(imgData).then(r=>r.arrayBuffer());
+    const img=await compressedPdf.embedJpg(imgBytes);
+
+    const newPage=compressedPdf.addPage([vp.width, vp.height]);
+    newPage.drawImage(img,{x:0,y:0,width:vp.width,height:vp.height});
+
+    cctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+
+  const compressedBytes=await compressedPdf.save();
+  return new Blob([compressedBytes],{type:"application/pdf"});
+}
+
+/* Compression Modal handlers */
+function askCompressionLevel(){
+  return new Promise((resolve)=>{
+    const modal=document.getElementById('compressionModal');
+    modal.classList.add('open');
+    window.confirmCompression=(lvl)=>{
+      modal.classList.remove('open');
+      resolve(lvl);
+    };
+  });
+}
+
+/* Merge + Ask Compression + Download */
+mergeBtn.onclick = async () => {
+  if (selectedFiles.length < 1) {
+    statusMsg.textContent = "Please select at least one file.";
+    return;
+  }
+
+  statusMsg.textContent = "Merging...";
+  try {
+    const mergedBlob = await buildMergedPDFBlob();
+    statusMsg.textContent = "Choose compression level...";
+    const level = await askCompressionLevel();
+
+    let finalBlob;
+
+    if (level === 'none') {
+      // Direct download (no compression)
+      finalBlob = mergedBlob;
+    } else {
+      statusMsg.textContent = "Compressing...";
+      finalBlob = await compressPDF(mergedBlob, level);
+    }
+
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(finalBlob);
+    a.download = (level === 'none') ? "merged_original.pdf" : "merged_compressed.pdf";
+    a.click();
+    statusMsg.textContent = "✅ File ready for download!";
+  } catch (e) {
+    console.error(e);
+    statusMsg.textContent = "❌ Merge/compress failed.";
+  }
 };
+
 </script>
 </body>
 </html>
